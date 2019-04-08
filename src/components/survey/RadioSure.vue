@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="text">{{ question }}</p>
-    <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-fit">
+    <b-form-radio-group class="text radio" v-model="value" :options="options" :state="state" name="radio-sure">
       <b-form-invalid-feedback :state="state">Bitte auswählen</b-form-invalid-feedback>
       <b-form-valid-feedback :state="state">Danke!</b-form-valid-feedback>
     </b-form-radio-group>
@@ -12,14 +12,14 @@
   export default {
     data() {
       return {
-        question: "Wie gut passt das gezeigte Suchergebnis zur Vorlesung?",
+        question: "Wie sicher bist du dir mit der Antwort?",
         value: null,
         options: [
-          { text: 'sehr gut', value: 5 },
-          { text: 'gut', value: 4 },
-          { text: 'okay', value: 3 },
-          { text: 'schlecht', value: 2 },
-          { text: 'sehr schlecht', value: 1 }
+          { text: 'sehr sicher', value: 5 },
+          { text: 'sicher', value: 4 },
+          { text: '50:50', value: 3 },
+          { text: 'unsicher', value: 2 },
+          { text: 'sehr unsicher', value: 1 }
         ]
       }
     },
