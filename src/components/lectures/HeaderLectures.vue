@@ -1,12 +1,12 @@
 <template>
   <div>
     <b-row>
-      <b-col><button type="button" class="btn btn-outline-dark">{{ back }}</button></b-col>
+      <b-col><button type="button" class="btn btn-outline-dark">zurück</button></b-col>
       <b-col>
-        <h2>{{ title }}</h2>
-        <p>bla</p>
+        <h2>Vorlesung</h2>
+        <p>x von y</p>
       </b-col>
-      <b-col><button type="button" class="btn btn-outline-dark">{{ next }}</button></b-col>
+      <b-col><button type="button" class="btn btn-outline-dark">nächste</button></b-col>
     </b-row>
   </div>
 </template>
@@ -16,9 +16,6 @@ export default {
   name: 'HeaderLectures',
   data () {
     return {
-      title: 'Vorlesung',
-      next: 'weiter',
-      back: 'zurück'
     }
   }
 }

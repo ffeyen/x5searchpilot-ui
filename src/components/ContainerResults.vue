@@ -1,5 +1,5 @@
 <template>
-  <b-container class="h-100 w-100">
+  <b-container class="w-100">
     <b-col align-v="start">
       <b-row>
         <HeaderResults />
@@ -39,7 +39,6 @@ export default {
   margin: 0px auto;
   padding: 0px !important;
   text-overflow: ellipsis;
-  overflow: auto;
   background: rgb(183, 243, 229);
 }
 </style>

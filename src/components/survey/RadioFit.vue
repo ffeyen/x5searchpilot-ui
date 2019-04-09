@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text">{{ question }}</p>
+    <p class="text">Wie gut passt das gezeigte Suchergebnis zur Vorlesung?</p>
     <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-fit">
       <b-form-invalid-feedback :state="state">Bitte auswählen</b-form-invalid-feedback>
       <b-form-valid-feedback :state="state">Danke!</b-form-valid-feedback>
@@ -12,7 +12,6 @@
   export default {
     data() {
       return {
-        question: "Wie gut passt das gezeigte Suchergebnis zur Vorlesung?",
         value: null,
         options: [
           { text: 'sehr gut', value: 5 },
@@ -30,7 +29,8 @@
     },
     watch: {
       value: function () {
-        console.log(this.value);
+        console.log("RadioFit: emits event / value: " + this.value);
+        this.$emit('changeRadioBtnFit', this.value);
       }
     }
   }

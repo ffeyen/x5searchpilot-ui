@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 * {
-  height: 100% auto;
+  height: auto;
   margin: 0;
   padding: 0.33rem;
   text-align: left;

@@ -38,7 +38,7 @@ export default {
 }
 
 .max-height {
-  height: 100%;
+  height: 100vh;
 }
 
 .wrapper {

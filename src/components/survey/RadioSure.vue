@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p class="text">{{ question }}</p>
-    <b-form-radio-group class="text radio" v-model="value" :options="options" :state="state" name="radio-sure">
+    <p class="text">Wie sicher bist du dir mit der Antwort? ({{ value }})</p>
+    <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-sure">
       <b-form-invalid-feedback :state="state">Bitte auswählen</b-form-invalid-feedback>
       <b-form-valid-feedback :state="state">Danke!</b-form-valid-feedback>
     </b-form-radio-group>
@@ -12,7 +12,6 @@
   export default {
     data() {
       return {
-        question: "Wie sicher bist du dir mit der Antwort?",
         value: null,
         options: [
           { text: 'sehr sicher', value: 5 },
@@ -30,7 +29,8 @@
     },
     watch: {
       value: function () {
-        console.log(this.value);
+        //console.log("RadioSure: emits event / value: " + this.value);
+        this.$emit('changeRadioBtnSure', this.value);
       }
     }
   }

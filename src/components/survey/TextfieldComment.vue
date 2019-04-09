@@ -2,11 +2,12 @@
   <div>
     <b-form-textarea
       id="textarea"
-      v-model="text"
+      v-model="textComment"
       placeholder="Anmerkung/Kommentar..."
       rows="3"
-      max-rows="6"
+      max-rows="4"
     ></b-form-textarea>
+    <p>{{ textComment }}</p>
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 export default {
     data() {
       return {
+        textComment: ''
     }
   }
 }
