@@ -1,13 +1,13 @@
 <template>
   <div>
     <b-form-textarea
-      id="textarea"
-      v-model="textComment"
+      id="textComment"
+      v-model="value"
       placeholder="Anmerkung/Kommentar..."
       rows="3"
-      max-rows="4"
+      max-rows="3"
     ></b-form-textarea>
-    <p>{{ textComment }}</p>
+    <p>{{ value }}</p>
   </div>
 </template>
 
@@ -15,7 +15,13 @@
 export default {
     data() {
       return {
-        textComment: ''
+        value: ''
+    }
+  },
+  watch: {
+    value: function(value) {
+      this.$emit('changeTextComment', value)
+      //console.log("TextComment: emits event / value: " + this.value);
     }
   }
 }

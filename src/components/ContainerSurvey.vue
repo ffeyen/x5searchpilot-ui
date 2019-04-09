@@ -4,7 +4,7 @@
       <b-row class="radio"><RadioFit @changeRadioBtnFit="updateRadioFit($event)" /></b-row>
       <b-row class="radio"><RadioSure @changeRadioBtnSure="updateRadioSure($event)" /></b-row>
       <b-row>
-        <b-col cols="7" class="textfield"><TextfieldComment /></b-col>
+        <b-col cols="7" class="textfield"><TextfieldComment @changeTextComment="updateTextComment($event)" /></b-col>
         <b-col><b-button @click="submit" class="btn" size="lg" variant="dark">Absenden</b-button></b-col>
       </b-row>
     </b-col>
@@ -25,23 +25,27 @@ export default {
   },
   data () {
     return {
-      textfield: '',
+      radioFit: '',
       radioSure: '',
-      radioFit: ''
+      textComment: ''
     }
   },
   methods: {
     submit: function() {
       this.$http.post('https://jsonplaceholder.typicode.com/posts', {
       })
+    },    
+    updateRadioFit: function(value) {
+      this.radioFit = value;
+      //console.log("updateRadioFit to " + this.radioFit);
     },
     updateRadioSure: function(value) {
       this.radioSure = value;
       //console.log("updateRadioSure to " + this.radioSure);
     },
-    updateRadioFit: function(value) {
-      this.radioFit = value;
-      //console.log("updateRadioFit to " + this.radioFit);
+    updateTextComment: function(value) {
+      this.textComment = value;
+      //console.log("updateTextComment to " + this.textComment);
     }
   }
 }
