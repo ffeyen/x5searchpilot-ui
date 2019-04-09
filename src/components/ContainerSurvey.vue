@@ -1,7 +1,7 @@
 <template>
   <b-container class="h-100 w-100">
     <b-col align-v="end">
-      <b-row class="radio"><RadioFit /></b-row>
+      <b-row class="radio"><RadioFit @changeRadioBtnFit="updateRadioFit($event)" /></b-row>
       <b-row class="radio"><RadioSure @changeRadioBtnSure="updateRadioSure($event)" /></b-row>
       <b-row>
         <b-col cols="7" class="textfield"><TextfieldComment /></b-col>
@@ -26,7 +26,8 @@ export default {
   data () {
     return {
       textfield: '',
-      radioSure: ''
+      radioSure: '',
+      radioFit: ''
     }
   },
   methods: {
@@ -36,7 +37,11 @@ export default {
     },
     updateRadioSure: function(value) {
       this.radioSure = value;
-      //console.log("updateRadioShure to " + this.radioSure);
+      //console.log("updateRadioSure to " + this.radioSure);
+    },
+    updateRadioFit: function(value) {
+      this.radioFit = value;
+      //console.log("updateRadioFit to " + this.radioFit);
     }
   }
 }
