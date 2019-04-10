@@ -5,7 +5,7 @@
         <HeaderLectures :lecturePageMax="lecturePageMax" @updateLecturePage="changeLecturePage($event)"/>
       </b-row>
       <b-row>
-        <ContentLectures :jsonLectures="jsonLectures" />
+        <ContentLectures :jsonLectures="jsonLectures" :lecturePage="lecturePage" />
       </b-row>
     </b-col>
   </b-container>
@@ -24,14 +24,13 @@ export default {
   },
   data () {
     return {
-      lecturePage: 0,
+      lecturePage: 1,
       lecturePageMax: this.jsonLectures.lectures.length
     }
   }, 
   methods: {
     changeLecturePage(value) {
       this.lecturePage = value;
-      console.log(this.lecturePage);
     }
   }
 }

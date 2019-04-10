@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col><button :disabled="lecturePage === 0"  @click="changeLecturePage(-1.0)" type="button" class="btn btn-outline-dark">zurück</button></b-col>
+      <b-col><button :disabled="lecturePage === 1"  @click="changeLecturePage(-1.0)" type="button" class="btn btn-outline-dark">zurück</button></b-col>
       <b-col>
         <h2>Vorlesung</h2>
         <p>{{ lecturePage }} von {{ pageMax }}</p>
@@ -17,7 +17,7 @@ export default {
   props: ['lecturePageMax'],
   data () {
     return {
-      lecturePage: 0,
+      lecturePage: 1,
       pageMax: this.lecturePageMax
     }
   },

@@ -12,16 +12,18 @@ export default {
   props: ['jsonLectures', 'lecturePage'],
   data () {
     return {
+      page: this.lecturePage,
       title: this.jsonLectures.lectures[0].attributes.title,
       subtitle: this.jsonLectures.lectures[0].attributes.subtitle,
       describtion: this.jsonLectures.lectures[0].attributes.describtion,
     }
   },
   watch: {
-    lecturePage() {
-      return {
-        title: this.jsonLectures.lectures[this.lecturePage].attributes.title,
-      }
+    lecturePage(value) {
+      var index = value - 1;
+      this.title = this.jsonLectures.lectures[index].attributes.title;
+      this.subtitle = this.jsonLectures.lectures[index].attributes.subtitle;
+      this.describtion = this.jsonLectures.lectures[index].attributes.describtion;
     }
   }
 }
