@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      lecturePage: '',
+      lecturePage: 0,
       lecturePageMax: this.jsonLectures.lectures.length
     }
   }, 

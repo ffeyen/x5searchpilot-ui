@@ -1,12 +1,12 @@
 <template>
   <div>
     <b-row>
-      <b-col><button @click="changeLecturePage(-1.0)" type="button" class="btn btn-outline-dark">zurück</button></b-col>
+      <b-col><button :disabled="lecturePage === 0"  @click="changeLecturePage(-1.0)" type="button" class="btn btn-outline-dark">zurück</button></b-col>
       <b-col>
         <h2>Vorlesung</h2>
         <p>{{ lecturePage }} von {{ pageMax }}</p>
       </b-col>
-      <b-col><button @click="changeLecturePage(1.0)" type="button" class="btn btn-outline-dark">nächste</button></b-col>
+      <b-col><button :disabled="lecturePage === pageMax"  @click="changeLecturePage(1.0)" type="button" class="btn btn-outline-dark">nächste</button></b-col>
     </b-row>
   </div>
 </template>
@@ -24,7 +24,6 @@ export default {
   methods: {
     changeLecturePage(pageChange) {
       this.lecturePage = this.lecturePage + pageChange;
-      //console.log(pageChange + " / new value: " + this.lecturePage)
       this.$emit('updateLecturePage', this.lecturePage);
     }
   }
