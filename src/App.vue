@@ -1,7 +1,7 @@
 <template>
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
-      <b-col><ContainerLectures /></b-col>
+      <b-col><ContainerLectures :jsonLectures="jsonLectures" /></b-col>
       <b-col><ContainerResults /></b-col>
     </b-row>
   </b-container>
@@ -11,12 +11,19 @@
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
 
+import lectures from './dummy-lectures.json'
+
 export default {
   name: 'App',
   components: {
     ContainerLectures,
     ContainerResults
   },
+  data() { 
+    return {
+      jsonLectures: lectures
+    } 
+  }
 }
 </script>
 

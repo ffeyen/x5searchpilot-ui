@@ -9,11 +9,19 @@
 <script>
 export default {
   name: 'ContentLectures',
+  props: ['jsonLectures', 'lecturePage'],
   data () {
     return {
-      title: 'Titel der Vorlesung',
-      subtitle: 'Untertitle der Vorlesung Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      describtion: 'Beschreibung der Vorlesung Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo duo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo uo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo duo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo.',
+      title: this.jsonLectures.lectures[0].attributes.title,
+      subtitle: this.jsonLectures.lectures[0].attributes.subtitle,
+      describtion: this.jsonLectures.lectures[0].attributes.describtion,
+    }
+  },
+  watch: {
+    lecturePage() {
+      return {
+        title: this.jsonLectures.lectures[this.lecturePage].attributes.title,
+      }
     }
   }
 }

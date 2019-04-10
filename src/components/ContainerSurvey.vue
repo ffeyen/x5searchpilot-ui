@@ -5,7 +5,7 @@
       <b-row class="radio"><RadioSure @changeRadioBtnSure="updateRadioSure($event)" /></b-row>
       <b-row>
         <b-col cols="7" class="textfield"><TextfieldComment @changeTextComment="updateTextComment($event)" /></b-col>
-        <b-col><b-button @click="submit" class="btn" size="lg" variant="dark">Absenden</b-button></b-col>
+        <b-col><b-button @click="submit" class="btn btn-outline-dark" size="lg">Absenden</b-button></b-col>
       </b-row>
     </b-col>
   </b-container>
