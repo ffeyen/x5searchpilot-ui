@@ -1,10 +1,7 @@
 <template>
   <div>
     <p class="text">Wie gut passt das gezeigte Suchergebnis zur Vorlesung? ({{ value }})</p>
-    <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-fit">
-      <b-form-invalid-feedback :state="state">Bitte auswählen</b-form-invalid-feedback>
-      <b-form-valid-feedback :state="state">Danke!</b-form-valid-feedback>
-    </b-form-radio-group>
+    <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-fit"></b-form-radio-group>
   </div>
 </template>
 

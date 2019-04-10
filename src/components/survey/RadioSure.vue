@@ -1,10 +1,7 @@
 <template>
   <div>
     <p class="text">Wie sicher bist du dir mit der Antwort? ({{ value }})</p>
-    <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-sure">
-      <b-form-invalid-feedback :state="state">Bitte auswählen</b-form-invalid-feedback>
-      <b-form-valid-feedback :state="state">Danke!</b-form-valid-feedback>
-    </b-form-radio-group>
+    <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-sure"></b-form-radio-group>
   </div>
 </template>
 
