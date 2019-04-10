@@ -1,7 +1,7 @@
 <template>
   <b-container class="mh-100">
     <h3 class="text">{{ title }}</h3>
-    <p class="cut-text max-lines-5 text">{{ subtitle }}</p>
+    <p class="cut-text max-lines-10 text">{{ subtitle }}</p>
     <p class="cut-text max-lines-1 text link"><a :href="link" target="_blank">{{ link }}</a></p>
   </b-container>
 </template>
@@ -45,8 +45,8 @@ h3 {
 }
 
 
-.max-lines-5 {
-   -webkit-line-clamp: 5;
+.max-lines-10 {
+   -webkit-line-clamp: 10;
 }
 
 .link {

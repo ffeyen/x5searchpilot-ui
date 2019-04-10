@@ -2,7 +2,7 @@
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
       <b-col><ContainerLectures :jsonLectures="jsonLectures" /></b-col>
-      <b-col><ContainerResults /></b-col>
+      <b-col><ContainerResults :jsonLectures="jsonLectures" /></b-col>
     </b-row>
   </b-container>
 </template>

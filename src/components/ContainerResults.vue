@@ -8,7 +8,7 @@
         <ContentResults />
       </b-row>
       <b-row class="w-100">
-        <ContainerSurvey />
+        <ContainerSurvey :jsonLectures="jsonLectures"/>
       </b-row>
     </b-col>
   </b-container>
@@ -21,6 +21,7 @@ import ContainerSurvey from './ContainerSurvey'
 
 export default {
   name: 'ContainerResults',
+  props: ['jsonLectures'],
   components: {
     HeaderResults,
     ContentResults,

@@ -5,7 +5,7 @@
       <b-row class="radio"><RadioSure @changeRadioBtnSure="updateRadioSure($event)" /></b-row>
       <b-row>
         <b-col cols="7" class="textfield"><TextfieldComment @changeTextComment="updateTextComment($event)" /></b-col>
-        <b-col><b-button @click="submit" class="btn btn-outline-dark" size="lg">Absenden</b-button></b-col>
+        <b-col><b-button @click.prevent="submit" class="btn btn-outline-dark" size="lg">Absenden</b-button></b-col>
       </b-row>
     </b-col>
   </b-container>
@@ -18,6 +18,7 @@ import TextfieldComment from './survey/TextfieldComment'
 
 export default {
   name: 'ContainerSurvey',
+  props: ['jsonLectures'],
   components: {
     RadioFit,
     RadioSure,
@@ -25,27 +26,36 @@ export default {
   },
   data () {
     return {
-      radioFit: '',
-      radioSure: '',
-      textComment: ''
+      surveyRadioFit: '',
+      surveyRadioSure: '',
+      surveyTextComment: '',
+      submitted: false
     }
   },
   methods: {
     submit: function() {
-      this.$http.post('https://jsonplaceholder.typicode.com/posts', {
-      })
+      this.submitted = true;
+
+      let surveyBundle = {
+        submittedId: this.jsonLectures.lectures[0].id,
+        submittedSend: this.submitted,
+        submittedRadioFit: this.surveyRadioFit,
+        submittedRadioSure: this.surveyRadioSure,
+        submittedTextComment: this.surveyTextComment,
+        submittedDate: JSON.stringify(new Date())
+      };
+
+      console.log("SUBMITTED " + this.submitted);
+      console.log(surveyBundle);
     },    
     updateRadioFit: function(value) {
-      this.radioFit = value;
-      //console.log("updateRadioFit to " + this.radioFit);
+      this.surveyRadioFit = value;
     },
     updateRadioSure: function(value) {
-      this.radioSure = value;
-      //console.log("updateRadioSure to " + this.radioSure);
+      this.surveyRadioSure = value;
     },
     updateTextComment: function(value) {
-      this.textComment = value;
-      //console.log("updateTextComment to " + this.textComment);
+      this.surveyTextComment = value;
     }
   }
 }
