@@ -31,6 +31,7 @@ export default {
   methods: {
     changeLecturePage(value) {
       this.lecturePage = value;
+      this.$emit('updateLecturePageToApp', this.lecturePage)
     }
   }
 }

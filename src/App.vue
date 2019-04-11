@@ -1,8 +1,8 @@
 <template>
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
-      <b-col><ContainerLectures :jsonLectures="jsonLectures" /></b-col>
-      <b-col><ContainerResults :jsonLectures="jsonLectures" /></b-col>
+      <b-col><ContainerLectures :jsonLectures="jsonLectures" @updateLecturePageToApp="changeLecturePage($event)"/></b-col>
+      <b-col><ContainerResults :jsonLectures="jsonLectures" :lecturePage="lecturePage" /></b-col>
     </b-row>
   </b-container>
 </template>
@@ -21,8 +21,14 @@ export default {
   },
   data() { 
     return {
-      jsonLectures: lectures
+      jsonLectures: lectures,
+      lecturePage: 1
     } 
+  },
+  methods: {
+    changeLecturePage(value) {
+      this.lecturePage = value;
+    }
   }
 }
 </script>
