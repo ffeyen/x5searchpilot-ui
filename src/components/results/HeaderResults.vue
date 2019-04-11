@@ -1,12 +1,24 @@
 <template>
   <div>
     <b-row>
-      <b-col><button type="button" @click="changeResultsPage(-1.0)" class="btn btn-outline-dark">zurück</button></b-col>
+      <b-col><button 
+        type="button" 
+        :disabled="resultsPage === 1" 
+        @click="changeResultsPage(-1.0)" 
+        class="btn btn-outline-dark"
+        >zurück</button>
+      </b-col>
       <b-col>
         <h2>Suchergebnis</h2>
         <p>{{ resultsPage }} von {{ resultsPageMax }}</p>
       </b-col>
-      <b-col><button type="button" @click="changeResultsPage(1.0)" class="btn btn-outline-dark">nächstes</button></b-col>
+      <b-col><button 
+        type="button" 
+        :disabled="resultsPage === resultsPageMax" 
+        @click="changeResultsPage(1.0)" 
+        class="btn btn-outline-dark"
+        >nächstes</button>
+      </b-col>
     </b-row>
   </div>
 </template>
