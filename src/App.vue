@@ -1,8 +1,16 @@
 <template>
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
-      <b-col><ContainerLectures :jsonLectures="jsonLectures" @updateLecturePageToApp="changeLecturePage($event)"/></b-col>
-      <b-col><ContainerResults :jsonLectures="jsonLectures" :lecturePage="lecturePage" /></b-col>
+      <b-col><ContainerLectures 
+        :jsonLectures="jsonLectures" 
+        @updateLecturePageToApp="changeLecturePage($event)"
+      /></b-col>
+      <b-col><ContainerResults 
+        :jsonLectures="jsonLectures" 
+        :jsonResults="jsonResults" 
+        :lecturePage="lecturePage"
+        :resultsPage="resultsPage" 
+      /></b-col>
     </b-row>
   </b-container>
 </template>
@@ -12,6 +20,7 @@ import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
 
 import lectures from './dummy-lectures.json'
+import results from './dummy-results.json'
 
 export default {
   name: 'App',
@@ -22,7 +31,9 @@ export default {
   data() { 
     return {
       jsonLectures: lectures,
-      lecturePage: 1
+      jsonResults: results,
+      lecturePage: 1,
+      resultsPage: 1
     } 
   },
   methods: {

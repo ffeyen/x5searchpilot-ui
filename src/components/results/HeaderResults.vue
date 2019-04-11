@@ -1,12 +1,12 @@
 <template>
   <div>
     <b-row>
-      <b-col><button type="button" class="btn btn-outline-dark">zurück</button></b-col>
+      <b-col><button type="button" @click="changeResultsPage(-1.0)" class="btn btn-outline-dark">zurück</button></b-col>
       <b-col>
         <h2>Suchergebnis</h2>
-        <p>x von y</p>
+        <p>{{ resultsPage }} von {{ resultsPageMax }}</p>
       </b-col>
-      <b-col><button type="button" class="btn btn-outline-dark">nächstes</button></b-col>
+      <b-col><button type="button" @click="changeResultsPage(1.0)" class="btn btn-outline-dark">nächstes</button></b-col>
     </b-row>
   </div>
 </template>
@@ -14,8 +14,16 @@
 <script>
 export default {
   name: 'HeaderResults',
+  props: ['resultsPageMax'],
   data () {
     return {
+      resultsPage: 1
+    }
+  },
+  methods: {
+    changeResultsPage(pageChange) {
+      this.resultsPage = this.resultsPage + pageChange;
+      this.$emit('updateResultsPage', this.resultsPage);
     }
   }
 }

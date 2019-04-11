@@ -2,13 +2,19 @@
   <b-container class="w-100">
     <b-col align-v="start">
       <b-row>
-        <HeaderResults />
+        <HeaderResults
+          :resultsPageMax="resultsPageMax"
+          @updateResultsPage="changeResultsPage($event)"
+        />
       </b-row>
       <b-row>
         <ContentResults />
       </b-row>
       <b-row class="w-100">
-        <ContainerSurvey :jsonLectures="jsonLectures" :lecturePage="lecturePage"/>
+        <ContainerSurvey 
+          :jsonLectures="jsonLectures" 
+          :lecturePage="lecturePage"
+        />
       </b-row>
     </b-col>
   </b-container>
@@ -21,7 +27,7 @@ import ContainerSurvey from './ContainerSurvey'
 
 export default {
   name: 'ContainerResults',
-  props: ['jsonLectures', 'lecturePage'],
+  props: ['jsonLectures', 'lecturePage', 'jsonResults', 'resultsPage'],
   components: {
     HeaderResults,
     ContentResults,
@@ -29,6 +35,14 @@ export default {
   },
   data () {
     return {
+      resultsPage: 1,
+      resultsPageMax: this.jsonResults.results.length
+    }
+  }, 
+  methods: {
+    changeResultsPage(value) {
+      this.resultsPage = value;
+      //this.$emit('updateResultsPageToApp', this.resultsPage)
     }
   }
 }
