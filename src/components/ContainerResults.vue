@@ -40,7 +40,7 @@ export default {
   data () {
     return {
       resultsPageVar: 1,
-      resultsPageMax: this.jsonResults.results.length
+      resultsPageMax: this.jsonResults.results.length -1
     }
   }, 
   methods: {

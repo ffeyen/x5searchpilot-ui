@@ -1,7 +1,10 @@
 <template>
   <b-container class="mh-100">
     <h3 class="text">{{ title }}</h3>
-    <p class="cut-text max-lines-10 text">{{ subtitle }}</p>
+    <b-row>
+      <b-col class="col-thumbnail"><b-img class="thumbnail" :src="urlThumbnail" :alt="title"></b-img></b-col>
+      <b-col><p class="cut-text max-lines-10 text">{{ subtitle }}</p></b-col>
+    </b-row>
     <p class="cut-text max-lines-1 text link"><a :href="url" target="_blank">{{ url }}</a></p>
   </b-container>
 </template>
@@ -49,6 +52,14 @@ h3 {
   margin-bottom: 1rem;
 }
 
+.thumbnail {
+  padding-left: 1.5rem;
+  margin-top: -0.2rem;
+}
+.col-thumbnail {
+  max-width: 160px;
+}
+
 .cut-text {
    overflow: auto;
    text-overflow: ellipsis;
@@ -69,6 +80,7 @@ h3 {
 }
 
 .text {
+    margin-top: -0.5rem;
     padding-right: 2rem;
     padding-left: 2rem;
     line-height: 1.5rem;
