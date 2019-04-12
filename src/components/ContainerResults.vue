@@ -10,7 +10,7 @@
       <b-row>
         <ContentResults 
           :jsonResults="jsonResults"
-          :resultsPage="resultsPage"
+          :resultsPage="resultsPageVar"
         />
       </b-row>
       <b-row class="w-100">
@@ -46,7 +46,7 @@ export default {
   methods: {
     changeResultsPage(value) {
       this.resultsPageVar = value;
-      //this.$emit('updateResultsPageToApp', this.resultsPageVar)
+      this.$emit('updateResultsPageToApp', this.resultsPageVar)
     }
   }
 }

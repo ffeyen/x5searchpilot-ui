@@ -10,6 +10,7 @@
         :jsonResults="jsonResults" 
         :lecturePage="lecturePage"
         :resultsPage="resultsPage" 
+        @updateResultsPageToApp="changeResultsPage($event)"
       /></b-col>
     </b-row>
   </b-container>
@@ -39,6 +40,9 @@ export default {
   methods: {
     changeLecturePage(value) {
       this.lecturePage = value;
+    },
+    changeResultsPage(value) {
+      this.resultsPage = value;
     }
   }
 }

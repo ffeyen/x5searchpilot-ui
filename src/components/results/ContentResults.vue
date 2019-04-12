@@ -60,7 +60,6 @@ h3 {
    -webkit-line-clamp: 1;
 }
 
-
 .max-lines-10 {
    -webkit-line-clamp: 10;
 }
