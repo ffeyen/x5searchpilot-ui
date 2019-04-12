@@ -18,7 +18,7 @@ import TextfieldComment from './survey/TextfieldComment'
 
 export default {
   name: 'ContainerSurvey',
-  props: ['jsonLectures', 'lecturePage'],
+  props: ['jsonLectures', 'lecturePage', 'resultsPage'],
   components: {
     RadioFit,
     RadioSure,
@@ -36,9 +36,9 @@ export default {
     submit: function() {
       this.submitted = true;
 
-      let surveyBundle = {
-        submitId: this.jsonLectures.lectures[this.lecturePage].id,
-        submitResultId: 1,
+      let submitBundle = {
+        submitLectureId: this.jsonLectures.lectures[this.lecturePage - 1].id - 1,
+        submitResultId: this.resultsPage - 1,
         submitRadioFit: this.surveyRadioFit,
         submitRadioSure: this.surveyRadioSure,
         submitTextComment: this.surveyTextComment,
@@ -47,7 +47,7 @@ export default {
       };
 
       console.log("SUBMITTED " + this.submitted);
-      console.log(surveyBundle);
+      console.log(submitBundle);
     },    
     updateRadioFit: function(value) {
       this.surveyRadioFit = value;

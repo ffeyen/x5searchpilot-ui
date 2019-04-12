@@ -8,12 +8,16 @@
         />
       </b-row>
       <b-row>
-        <ContentResults />
+        <ContentResults 
+          :jsonResults="jsonResults"
+          :resultsPage="resultsPage"
+        />
       </b-row>
       <b-row class="w-100">
         <ContainerSurvey 
           :jsonLectures="jsonLectures" 
           :lecturePage="lecturePage"
+          :resultsPage="resultsPageVar"
         />
       </b-row>
     </b-col>
@@ -35,14 +39,14 @@ export default {
   },
   data () {
     return {
-      resultsPage: 1,
+      resultsPageVar: 1,
       resultsPageMax: this.jsonResults.results.length
     }
   }, 
   methods: {
     changeResultsPage(value) {
-      this.resultsPage = value;
-      //this.$emit('updateResultsPageToApp', this.resultsPage)
+      this.resultsPageVar = value;
+      //this.$emit('updateResultsPageToApp', this.resultsPageVar)
     }
   }
 }
