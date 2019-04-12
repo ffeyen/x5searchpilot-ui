@@ -20,8 +20,9 @@
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
 
-import lectures from './dummy-lectures.json'
-import results from './dummy-results.json'
+import lectures from './model/dummy-lectures.json'
+import results from './model/dummy-results.json'
+import jsonData from './model/dummy-combined.json'
 
 export default {
   name: 'App',
