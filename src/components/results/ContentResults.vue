@@ -12,27 +12,36 @@
 <script>
 export default {
   name: 'ContentResults',
-  props: ['jsonResults', 'resultsPage'],
+  props: ['jsonResults', 'resultsPage', 'jsonData', 'lecturePage'],
   data () {
     return {
       page: this.resultsPage,
-      title: this.jsonResults.results[0].attributes.title,
-      subtitle: this.jsonResults.results[0].attributes.subtitle,
-      describtion: this.jsonResults.results[0].attributes.describtion,
-      tags: this.jsonResults.results[0].attributes.tags,
-      url: this.jsonResults.results[0].attributes.url_result,
-      urlThumbnail: this.jsonResults.results[0].attributes.url_thumbnail
+      title: this.jsonData.lectures[0].attributes.results[0].attributes.title,
+      subtitle: this.jsonData.lectures[0].attributes.results[0].attributes.subtitle,
+      describtion: this.jsonData.lectures[0].attributes.results[0].attributes.describtion,
+      tags: this.jsonData.lectures[0].attributes.results[0].attributes.tags,
+      url: this.jsonData.lectures[0].attributes.results[0].attributes.url_result,
+      urlThumbnail: this.jsonData.lectures[0].attributes.results[0].attributes.url_thumbnail
+    }
+  },
+  methods: {
+    updateContentResultsView() {
+      var indexLecturePage = this.lecturePage - 1;
+      var indexResultsPage = this.resultsPage - 1;
+      this.title = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.title;
+      this.subtitle = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.subtitle;
+      this.describtion = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.describtion;
+      this.tags = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.tags;
+      this.url = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.url_result;
+      this.urlThumbnail = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.url_thumbnail;
     }
   },
   watch: {
-    resultsPage(value) {
-      var index = value - 1;
-      this.title = this.jsonResults.results[index].attributes.title,
-      this.subtitle = this.jsonResults.results[index].attributes.subtitle,
-      this.describtion = this.jsonResults.results[index].attributes.describtion,
-      this.tags = this.jsonResults.results[index].attributes.tags,
-      this.url = this.jsonResults.results[index].attributes.url_result,
-      this.urlThumbnail = this.jsonResults.results[index].attributes.url_thumbnail
+    resultsPage() {
+      this.updateContentResultsView();
+    },
+    lecturePage() {
+      this.updateContentResultsView();
     }
   }
 }

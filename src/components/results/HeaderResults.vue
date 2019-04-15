@@ -26,7 +26,7 @@
 <script>
 export default {
   name: 'HeaderResults',
-  props: ['resultsPageMax'],
+  props: ['resultsPageMax', 'lecturePage'],
   data () {
     return {
       resultsPage: 1
@@ -36,6 +36,16 @@ export default {
     changeResultsPage(pageChange) {
       this.resultsPage = this.resultsPage + pageChange;
       this.$emit('updateResultsPage', this.resultsPage);
+    }
+  },
+  watch: {
+    resultsPageMax() {
+      if (this.resultsPage >= this.resultsPageMax) {
+        this.resultsPage = this.resultsPageMax;
+      }
+    },
+    lecturePage() {
+      this.resultsPage = 1;
     }
   }
 }

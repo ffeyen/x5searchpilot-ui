@@ -6,6 +6,7 @@
         @updateLecturePageToApp="changeLecturePage($event)"
       /></b-col>
       <b-col><ContainerResults 
+        :jsonData="jsonData" 
         :jsonLectures="jsonLectures" 
         :jsonResults="jsonResults" 
         :lecturePage="lecturePage"

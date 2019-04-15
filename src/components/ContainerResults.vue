@@ -4,20 +4,25 @@
       <b-row>
         <HeaderResults
           :resultsPageMax="resultsPageMax"
+          :lecturePage="lecturePage"
+          :resultsPage="resultsPage"
           @updateResultsPage="changeResultsPage($event)"
         />
       </b-row>
       <b-row>
         <ContentResults 
+          :jsonData="jsonData" 
           :jsonResults="jsonResults"
-          :resultsPage="resultsPageVar"
+          :lecturePage="lecturePage"
+          :resultsPage="resultsPage"
         />
       </b-row>
       <b-row class="w-100">
         <ContainerSurvey 
+          :jsonData="jsonData" 
           :jsonLectures="jsonLectures" 
           :lecturePage="lecturePage"
-          :resultsPage="resultsPageVar"
+          :resultsPage="resultsPage"
         />
       </b-row>
     </b-col>
@@ -31,7 +36,7 @@ import ContainerSurvey from './ContainerSurvey'
 
 export default {
   name: 'ContainerResults',
-  props: ['jsonLectures', 'lecturePage', 'jsonResults', 'resultsPage'],
+  props: ['jsonLectures', 'lecturePage', 'jsonResults', 'resultsPage', 'jsonData'],
   components: {
     HeaderResults,
     ContentResults,
@@ -40,13 +45,20 @@ export default {
   data () {
     return {
       resultsPageVar: 1,
-      resultsPageMax: this.jsonResults.results.length
+      resultsPageMax: this.jsonData.lectures[this.lecturePage - 1].attributes.results.length
     }
   }, 
   methods: {
     changeResultsPage(value) {
       this.resultsPageVar = value;
-      this.$emit('updateResultsPageToApp', this.resultsPageVar)
+      this.$emit('updateResultsPageToApp', this.resultsPageVar);
+    }
+  },
+  watch: {
+    lecturePage() {
+      this.resultsPageMax = this.jsonData.lectures[this.lecturePage - 1].attributes.results.length;
+      this.resultsPageVar = 1;
+      this.$emit('updateResultsPageToApp', this.resultsPageVar);
     }
   }
 }
