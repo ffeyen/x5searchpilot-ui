@@ -1,12 +1,21 @@
 <template>
   <div>
     <p class="text">Wie gut passt das gezeigte Suchergebnis zur Vorlesung? ({{ value }})</p>
-    <b-form-radio-group class="text" v-model="value" :options="options" :state="state" name="radio-fit"></b-form-radio-group>
+    <b-form-radio-group 
+      class="text" 
+      v-model="value" 
+      :disabled="submitted"
+      :options="options" 
+      :state="state" 
+      name="radio-fit"
+      >
+    </b-form-radio-group>
   </div>
 </template>
 
 <script>
   export default {
+    props: ['submitted'],
     data() {
       return {
         value: null,

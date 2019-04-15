@@ -1,11 +1,33 @@
 <template>
   <b-container class="h-100 w-100">
     <b-col align-v="end">
-      <b-row class="radio"><RadioFit @changeRadioBtnFit="updateRadioFit($event)" /></b-row>
-      <b-row class="radio"><RadioSure @changeRadioBtnSure="updateRadioSure($event)" /></b-row>
+      <b-row class="radio">
+        <RadioFit 
+          :submitted="submitted"
+          @changeRadioBtnFit="updateRadioFit($event)" 
+          />
+      </b-row>
+      <b-row class="radio">
+        <RadioSure 
+          :submitted="submitted"
+          @changeRadioBtnSure="updateRadioSure($event)" 
+          />
+        </b-row>
       <b-row>
-        <b-col cols="7" class="textfield"><TextfieldComment @changeTextComment="updateTextComment($event)" /></b-col>
-        <b-col><b-button @click.prevent="submit" class="btn btn-outline-dark" size="lg">Absenden</b-button></b-col>
+        <b-col cols="7" class="textfield">
+          <TextfieldComment 
+          :submitted="submitted"
+          @changeTextComment="updateTextComment($event)" 
+          />
+        </b-col>
+        <b-col>
+          <b-button 
+            @click.prevent="submit" 
+            :disabled="submitted"
+            class="btn btn-outline-dark" 
+            size="lg">Absenden
+          </b-button>
+        </b-col>
       </b-row>
     </b-col>
   </b-container>
@@ -18,7 +40,7 @@ import TextfieldComment from './survey/TextfieldComment'
 
 export default {
   name: 'ContainerSurvey',
-  props: ['jsonLectures', 'lecturePage', 'resultsPage'],
+  props: ['jsonData', 'lecturePage', 'resultsPage'],
   components: {
     RadioFit,
     RadioSure,
@@ -33,12 +55,12 @@ export default {
     }
   },
   methods: {
-    submit: function() {
+    submit() {
       this.submitted = true;
 
       let submitBundle = {
-        submitLectureId: this.jsonLectures.lectures[this.lecturePage - 1].id - 1,
-        submitResultId: this.resultsPage - 1,
+        submitLectureId: this.jsonData.lectures[this.lecturePage - 1].id,
+        submitResultId: this.jsonData.lectures[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id,
         submitRadioFit: this.surveyRadioFit,
         submitRadioSure: this.surveyRadioSure,
         submitTextComment: this.surveyTextComment,
@@ -46,7 +68,6 @@ export default {
         submitDate: JSON.stringify(new Date())
       };
 
-      console.log("SUBMITTED " + this.submitted);
       console.log(submitBundle);
     },    
     updateRadioFit: function(value) {

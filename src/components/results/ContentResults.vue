@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'ContentResults',
-  props: ['jsonResults', 'resultsPage', 'jsonData', 'lecturePage'],
+  props: ['resultsPage', 'jsonData', 'lecturePage'],
   data () {
     return {
       page: this.resultsPage,

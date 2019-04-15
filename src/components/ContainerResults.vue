@@ -12,7 +12,6 @@
       <b-row>
         <ContentResults 
           :jsonData="jsonData" 
-          :jsonResults="jsonResults"
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
         />
@@ -20,7 +19,6 @@
       <b-row class="w-100">
         <ContainerSurvey 
           :jsonData="jsonData" 
-          :jsonLectures="jsonLectures" 
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
         />
@@ -36,7 +34,7 @@ import ContainerSurvey from './ContainerSurvey'
 
 export default {
   name: 'ContainerResults',
-  props: ['jsonLectures', 'lecturePage', 'jsonResults', 'resultsPage', 'jsonData'],
+  props: ['lecturePage', 'resultsPage', 'jsonData'],
   components: {
     HeaderResults,
     ContentResults,

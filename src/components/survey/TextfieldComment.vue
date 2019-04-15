@@ -6,6 +6,7 @@
       placeholder="Anmerkung/Kommentar..."
       rows="3"
       max-rows="3"
+      :disabled="submitted"
     ></b-form-textarea>
     <p>{{ value }}</p>
   </div>
@@ -13,6 +14,7 @@
 
 <script>
 export default {
+    props: ['submitted'],
     data() {
       return {
         value: ''
