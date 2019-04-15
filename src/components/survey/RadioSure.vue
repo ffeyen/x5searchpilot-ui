@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    props: ['submitted'],
+    props: ['submitted', 'surveyRadioSure'],
     data() {
       return {
         value: null,
@@ -37,6 +37,9 @@
       value: function () {
         //console.log("RadioSure: emits event / value: " + this.value);
         this.$emit('changeRadioBtnSure', this.value);
+      },
+      surveyRadioSure() {
+        this.value = this.surveyRadioSure; 
       }
     }
   }

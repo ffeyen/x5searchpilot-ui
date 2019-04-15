@@ -4,12 +4,14 @@
       <b-row class="radio">
         <RadioFit 
           :submitted="submitted"
+          :surveyRadioFit="surveyRadioFit"
           @changeRadioBtnFit="updateRadioFit($event)" 
           />
       </b-row>
       <b-row class="radio">
         <RadioSure 
           :submitted="submitted"
+          :surveyRadioSure="surveyRadioSure"
           @changeRadioBtnSure="updateRadioSure($event)" 
           />
         </b-row>
@@ -17,6 +19,7 @@
         <b-col cols="7" class="textfield">
           <TextfieldComment 
           :submitted="submitted"
+          :surveyTextComment="surveyTextComment"
           @changeTextComment="updateTextComment($event)" 
           />
         </b-col>
@@ -82,6 +85,12 @@ export default {
   }, 
   watch: {
     lecturePage() {
+        this.surveyRadioFit = '';
+        this.surveyRadioSure = '';
+        this.surveyTextComment = '';
+        this.submitted = false;
+    },
+    resultsPage() {
         this.surveyRadioFit = '';
         this.surveyRadioSure = '';
         this.surveyTextComment = '';

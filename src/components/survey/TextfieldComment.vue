@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    props: ['submitted'],
+    props: ['submitted', 'surveyTextComment'],
     data() {
       return {
         value: ''
@@ -24,7 +24,10 @@ export default {
     value: function(value) {
       this.$emit('changeTextComment', value)
       //console.log("TextComment: emits event / value: " + this.value);
-    }
+    },
+      surveyTextComment() {
+        this.value = this.surveyTextComment; 
+      }
   }
 }
 </script>

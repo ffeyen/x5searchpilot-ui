@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    props: ['submitted'],
+    props: ['submitted', 'surveyRadioFit'],
     data() {
       return {
         value: null,
@@ -35,8 +35,10 @@
     },
     watch: {
       value: function () {
-        //console.log("RadioFit: emits event / value: " + this.value);
         this.$emit('changeRadioBtnFit', this.value);
+      },
+      surveyRadioFit() {
+        this.value = this.surveyRadioFit; 
       }
     }
   }
