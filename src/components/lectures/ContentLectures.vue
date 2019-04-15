@@ -9,21 +9,20 @@
 <script>
 export default {
   name: 'ContentLectures',
-  props: ['jsonLectures', 'lecturePage'],
+  props: ['jsonData', 'lecturePage'],
   data () {
     return {
-      page: this.lecturePage,
-      title: this.jsonLectures.lectures[0].attributes.title,
-      subtitle: this.jsonLectures.lectures[0].attributes.subtitle,
-      describtion: this.jsonLectures.lectures[0].attributes.describtion,
+      title: this.jsonData.lectures[0].attributes.title,
+      subtitle: this.jsonData.lectures[0].attributes.subtitle,
+      describtion: this.jsonData.lectures[0].attributes.describtion,
     }
   },
   watch: {
     lecturePage(value) {
       var index = value - 1;
-      this.title = this.jsonLectures.lectures[index].attributes.title;
-      this.subtitle = this.jsonLectures.lectures[index].attributes.subtitle;
-      this.describtion = this.jsonLectures.lectures[index].attributes.describtion;
+      this.title = this.jsonData.lectures[index].attributes.title;
+      this.subtitle = this.jsonData.lectures[index].attributes.subtitle;
+      this.describtion = this.jsonData.lectures[index].attributes.describtion;
     }
   }
 }

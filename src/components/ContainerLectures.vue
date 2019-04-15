@@ -5,7 +5,7 @@
         <HeaderLectures :lecturePageMax="lecturePageMax" @updateLecturePage="changeLecturePage($event)"/>
       </b-row>
       <b-row>
-        <ContentLectures :jsonLectures="jsonLectures" :lecturePage="lecturePage" />
+        <ContentLectures :jsonData="jsonData" :lecturePage="lecturePage" />
       </b-row>
     </b-col>
   </b-container>
@@ -17,7 +17,7 @@ import ContentLectures from './lectures/ContentLectures'
 
 export default {
   name: 'ContainerLectures',
-  props: ['jsonLectures'],
+  props: ['jsonData'],
   components: {
     HeaderLectures,
     ContentLectures
@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       lecturePage: 1,
-      lecturePageMax: this.jsonLectures.lectures.length
+      lecturePageMax: this.jsonData.lectures.length
     }
   }, 
   methods: {

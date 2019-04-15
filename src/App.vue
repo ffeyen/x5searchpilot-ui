@@ -2,7 +2,7 @@
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
       <b-col><ContainerLectures 
-        :jsonLectures="jsonLectures" 
+        :jsonData="jsonData" 
         @updateLecturePageToApp="changeLecturePage($event)"
       /></b-col>
       <b-col><ContainerResults 
@@ -34,6 +34,7 @@ export default {
     return {
       jsonLectures: lectures,
       jsonResults: results,
+      jsonData: jsonData,
       lecturePage: 1,
       resultsPage: 1
     } 
