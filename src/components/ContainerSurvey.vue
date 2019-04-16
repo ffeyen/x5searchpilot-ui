@@ -61,17 +61,22 @@ export default {
     submit() {
       this.submitted = true;
 
+      let submitBundle = this.bundleSurvey();
+
+      console.log(submitBundle);
+    },
+    bundleSurvey() {
       let submitBundle = {
-        submitLectureId: this.jsonData.lectures[this.lecturePage - 1].id,
-        submitResultId: this.jsonData.lectures[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id,
-        submitRadioFit: this.surveyRadioFit,
-        submitRadioSure: this.surveyRadioSure,
-        submitTextComment: this.surveyTextComment,
+        lectureId: this.jsonData.lectures[this.lecturePage - 1].id,
+        resultId: this.jsonData.lectures[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id,
+        radioFit: this.surveyRadioFit,
+        radioSure: this.surveyRadioSure,
+        textComment: this.surveyTextComment,
         submitSend: this.submitted,
         submitDate: JSON.stringify(new Date())
       };
 
-      console.log(submitBundle);
+      return submitBundle;
     },    
     updateRadioFit: function(value) {
       this.surveyRadioFit = value;
