@@ -1,19 +1,47 @@
 <template>
   <b-container class="mh-100">
     <h3 class="text">{{ title }}</h3>
-    <p class="cut-text max-lines-5 text">{{ subtitle }}</p>
-    <p class="cut-text max-lines-1 text link"><a :href="link" target="_blank">{{ link }}</a></p>
+    <b-row>
+      <b-col class="col-thumbnail"><b-img class="thumbnail" :src="urlThumbnail" :alt="title"></b-img></b-col>
+      <b-col><p class="cut-text max-lines-10 text">{{ subtitle }}</p></b-col>
+    </b-row>
+    <p class="cut-text max-lines-1 text link"><a :href="url" target="_blank">{{ url }}</a></p>
   </b-container>
 </template>
 
 <script>
 export default {
-  name: 'ContentLectures',
+  name: 'ContentResults',
+  props: ['resultsPage', 'jsonData', 'lecturePage'],
   data () {
     return {
-      title: 'Ergebnistitel',
-      subtitle: 'Untertitel Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      link: 'https://www.google.com'
+      page: this.resultsPage,
+      title: this.jsonData.lectures[0].attributes.results[0].attributes.title,
+      subtitle: this.jsonData.lectures[0].attributes.results[0].attributes.subtitle,
+      describtion: this.jsonData.lectures[0].attributes.results[0].attributes.describtion,
+      tags: this.jsonData.lectures[0].attributes.results[0].attributes.tags,
+      url: this.jsonData.lectures[0].attributes.results[0].attributes.url_result,
+      urlThumbnail: this.jsonData.lectures[0].attributes.results[0].attributes.url_thumbnail
+    }
+  },
+  methods: {
+    updateContentResultsView() {
+      var indexLecturePage = this.lecturePage - 1;
+      var indexResultsPage = this.resultsPage - 1;
+      this.title = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.title;
+      this.subtitle = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.subtitle;
+      this.describtion = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.describtion;
+      this.tags = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.tags;
+      this.url = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.url_result;
+      this.urlThumbnail = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.url_thumbnail;
+    }
+  },
+  watch: {
+    resultsPage() {
+      this.updateContentResultsView();
+    },
+    lecturePage() {
+      this.updateContentResultsView();
     }
   }
 }
@@ -21,7 +49,7 @@ export default {
 
 <style scoped>
 * {
-  height: 100% auto;
+  height: auto;
   margin: 0;
   padding: 0.33rem;
   text-align: left;
@@ -31,6 +59,14 @@ export default {
 h3 {
   padding-top: 2rem;
   margin-bottom: 1rem;
+}
+
+.thumbnail {
+  padding-left: 1.5rem;
+  margin-top: -0.2rem;
+}
+.col-thumbnail {
+  max-width: 160px;
 }
 
 .cut-text {
@@ -44,9 +80,8 @@ h3 {
    -webkit-line-clamp: 1;
 }
 
-
-.max-lines-5 {
-   -webkit-line-clamp: 5;
+.max-lines-10 {
+   -webkit-line-clamp: 10;
 }
 
 .link {
@@ -54,6 +89,7 @@ h3 {
 }
 
 .text {
+    margin-top: -0.5rem;
     padding-right: 2rem;
     padding-left: 2rem;
     line-height: 1.5rem;

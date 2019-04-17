@@ -1,13 +1,13 @@
 <template>
   <div>
-    <p class="text">Wie gut passt das gezeigte Suchergebnis zur Vorlesung? ({{ value }})</p>
+    <p class="text">Wie sicher bist du dir mit der Antwort? ({{ value }})</p>
     <b-form-radio-group 
       class="text" 
       v-model="value" 
       :disabled="submitted"
       :options="options" 
       :state="state" 
-      name="radio-fit"
+      name="radio-sure"
       >
     </b-form-radio-group>
   </div>
@@ -15,16 +15,16 @@
 
 <script>
   export default {
-    props: ['submitted', 'surveyRadioFit'],
+    props: ['submitted', 'surveyRadioSure'],
     data() {
       return {
         value: null,
         options: [
-          { text: 'sehr gut', value: 5 },
-          { text: 'gut', value: 4 },
-          { text: 'okay', value: 3 },
-          { text: 'schlecht', value: 2 },
-          { text: 'sehr schlecht', value: 1 }
+          { text: 'sehr sicher', value: 5 },
+          { text: 'sicher', value: 4 },
+          { text: '50:50', value: 3 },
+          { text: 'unsicher', value: 2 },
+          { text: 'sehr unsicher', value: 1 }
         ]
       }
     },
@@ -35,10 +35,11 @@
     },
     watch: {
       value: function () {
-        this.$emit('changeRadioBtnFit', this.value);
+        //console.log("RadioSure: emits event / value: " + this.value);
+        this.$emit('changeRadioBtnSure', this.value);
       },
-      surveyRadioFit() {
-        this.value = this.surveyRadioFit; 
+      surveyRadioSure() {
+        this.value = this.surveyRadioSure; 
       }
     }
   }

@@ -1,12 +1,12 @@
 <template>
   <div>
     <b-row>
-      <b-col><button type="button" class="btn btn-outline-dark">{{ back }}</button></b-col>
+      <b-col><button :disabled="lecturePage === 1"  @click="changeLecturePage(-1.0)" type="button" class="btn btn-outline-dark">zurück</button></b-col>
       <b-col>
-        <h2>{{ title }}</h2>
-        <p>bla</p>
+        <h2>Vorlesung</h2>
+        <p>{{ lecturePage }} von {{ pageMax }}</p>
       </b-col>
-      <b-col><button type="button" class="btn btn-outline-dark">{{ next }}</button></b-col>
+      <b-col><button :disabled="lecturePage === pageMax"  @click="changeLecturePage(1.0)" type="button" class="btn btn-outline-dark">nächste</button></b-col>
     </b-row>
   </div>
 </template>
@@ -14,11 +14,17 @@
 <script>
 export default {
   name: 'HeaderLectures',
+  props: ['lecturePageMax'],
   data () {
     return {
-      title: 'Vorlesung',
-      next: 'weiter',
-      back: 'zurück'
+      lecturePage: 1,
+      pageMax: this.lecturePageMax
+    }
+  },
+  methods: {
+    changeLecturePage(pageChange) {
+      this.lecturePage = this.lecturePage + pageChange;
+      this.$emit('updateLecturePage', this.lecturePage);
     }
   }
 }

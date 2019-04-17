@@ -9,11 +9,20 @@
 <script>
 export default {
   name: 'ContentLectures',
+  props: ['jsonData', 'lecturePage'],
   data () {
     return {
-      title: 'Titel der Vorlesung',
-      subtitle: 'Untertitle der Vorlesung Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-      describtion: 'Beschreibung der Vorlesung Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo duo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo uo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo duo invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo.',
+      title: this.jsonData.lectures[0].attributes.title,
+      subtitle: this.jsonData.lectures[0].attributes.subtitle,
+      describtion: this.jsonData.lectures[0].attributes.describtion,
+    }
+  },
+  watch: {
+    lecturePage(value) {
+      var index = value - 1;
+      this.title = this.jsonData.lectures[index].attributes.title;
+      this.subtitle = this.jsonData.lectures[index].attributes.subtitle;
+      this.describtion = this.jsonData.lectures[index].attributes.describtion;
     }
   }
 }

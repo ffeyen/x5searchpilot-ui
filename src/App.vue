@@ -1,8 +1,18 @@
 <template>
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
-      <b-col><ContainerLectures /></b-col>
-      <b-col><ContainerResults /></b-col>
+      <b-col><ContainerLectures 
+        :jsonData="jsonData" 
+        @updateLecturePageToApp="changeLecturePage($event)"
+      /></b-col>
+      <b-col><ContainerResults 
+        :jsonData="jsonData" 
+        :jsonLectures="jsonLectures" 
+        :jsonResults="jsonResults" 
+        :lecturePage="lecturePage"
+        :resultsPage="resultsPage" 
+        @updateResultsPageToApp="changeResultsPage($event)"
+      /></b-col>
     </b-row>
   </b-container>
 </template>
@@ -11,12 +21,33 @@
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
 
+import lectures from './model/dummy-lectures.json'
+import results from './model/dummy-results.json'
+import jsonData from './model/dummy-combined.json'
+
 export default {
   name: 'App',
   components: {
     ContainerLectures,
     ContainerResults
   },
+  data() { 
+    return {
+      jsonLectures: lectures,
+      jsonResults: results,
+      jsonData: jsonData,
+      lecturePage: 1,
+      resultsPage: 1
+    } 
+  },
+  methods: {
+    changeLecturePage(value) {
+      this.lecturePage = value;
+    },
+    changeResultsPage(value) {
+      this.resultsPage = value;
+    }
+  }
 }
 </script>
 
@@ -34,11 +65,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #343a40;
 }
 
 .max-height {
-  height: 100%;
+  height: 100vh;
 }
 
 .wrapper {
