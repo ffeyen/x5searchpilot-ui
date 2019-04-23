@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import router from './router'
-import VueResource from 'vue-resource'
+import axios from 'axios'
 import App from './App'
 import ContainerLectures from './components/ContainerLectures.vue'
 import ContainerResults from './components/ContainerResults.vue'

@@ -72,7 +72,6 @@ export default {
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
         textComment: this.surveyTextComment,
-        submitSend: this.submitted,
         submitDate: JSON.stringify(new Date())
       };
 
