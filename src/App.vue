@@ -7,8 +7,6 @@
       /></b-col>
       <b-col><ContainerResults 
         :jsonData="jsonData" 
-        :jsonLectures="jsonLectures" 
-        :jsonResults="jsonResults" 
         :lecturePage="lecturePage"
         :resultsPage="resultsPage" 
         @updateResultsPageToApp="changeResultsPage($event)"
@@ -18,11 +16,13 @@
 </template>
 
 <script>
+import Axios from 'axios';
+
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
 
-import lectures from './model/dummy-lectures.json'
-import results from './model/dummy-results.json'
+//import lectures from './model/dummy-lectures.json'
+//import results from './model/dummy-results.json'
 import jsonData from './model/dummy-combined.json'
 
 export default {
@@ -33,8 +33,6 @@ export default {
   },
   data() { 
     return {
-      jsonLectures: lectures,
-      jsonResults: results,
       jsonData: jsonData,
       lecturePage: 1,
       resultsPage: 1
