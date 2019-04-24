@@ -1,16 +1,9 @@
 [{
-    "type": "lectures",
-    "id": "1",
     "attributes": {
       "title": "",
       "subtitle": "",
       "describtion": "",
-      "course_id": "",
-      "start_time": "",
-      "semester_id": "",    
       "results": [{
-        "type": "results",
-        "result_id": "1",
         "attributes": {
           "title": "",
           "subtitle": "",
@@ -23,18 +16,11 @@
       }
 },
 {
-  "type": "lectures",
-  "id": "2",
   "attributes": {
     "title": "",
     "subtitle": "",
-    "describtion": "",
-    "course_id": "",
-    "start_time": "",
-    "semester_id": "",    
+    "describtion": "", 
     "results": [{
-      "type": "results",
-      "result_id": "1",
       "attributes": {
         "title": "",
         "subtitle": "",
