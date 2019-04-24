@@ -1,0 +1,48 @@
+[{
+    "type": "lectures",
+    "id": "1",
+    "attributes": {
+      "title": "",
+      "subtitle": "",
+      "describtion": "",
+      "course_id": "",
+      "start_time": "",
+      "semester_id": "",    
+      "results": [{
+        "type": "results",
+        "result_id": "1",
+        "attributes": {
+          "title": "",
+          "subtitle": "",
+          "describtion": "",
+          "tags": ["tag1", "tag2", "tag3"],
+          "url_result": "https://google.com",
+          "url_thumbnail": "https://via.placeholder.com/150/FFFFFF?text=empty1"
+          }
+        }]
+      }
+},
+{
+  "type": "lectures",
+  "id": "2",
+  "attributes": {
+    "title": "",
+    "subtitle": "",
+    "describtion": "",
+    "course_id": "",
+    "start_time": "",
+    "semester_id": "",    
+    "results": [{
+      "type": "results",
+      "result_id": "1",
+      "attributes": {
+        "title": "",
+        "subtitle": "",
+        "describtion": "",
+        "tags": ["tag1", "tag2", "tag3"],
+        "url_result": "https://google.com",
+        "url_thumbnail": "https://via.placeholder.com/150/FFFFFF?text=empty2"
+        }
+      }]
+    }
+}]

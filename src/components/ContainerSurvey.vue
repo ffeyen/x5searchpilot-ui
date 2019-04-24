@@ -67,8 +67,8 @@ export default {
     },
     bundleSurvey() {
       let submitBundle = {
-        lectureId: this.jsonData.lectures[this.lecturePage - 1].id,
-        resultId: this.jsonData.lectures[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id,
+        lectureId: this.jsonData[this.lecturePage - 1].id,
+        resultId: this.jsonData[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id,
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
         textComment: this.surveyTextComment,
