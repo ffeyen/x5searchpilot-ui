@@ -50,7 +50,7 @@ export default {
       this.resultsPage = value;
     }
   },
-  beforeCreate() {
+  created() {
     axios.get('http://localhost:3030/lectures/')
       .then(response => {
         this.jsonData = JSON.parse(JSON.stringify(response.data));
