@@ -15,5 +15,8 @@ export default {
   },
   getLecture(id) {
     return apiClient.get('/lectures/' + id)
+  },
+  postBundle(lectureId, resultId, bundle) {
+    return apiClient.post('/survey/' + lectureId + "/" + resultId, bundle)
   }
 } 

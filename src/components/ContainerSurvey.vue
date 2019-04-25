@@ -41,6 +41,8 @@ import RadioFit from './survey/RadioFit'
 import RadioSure from './survey/RadioSure'
 import TextfieldComment from './survey/TextfieldComment'
 
+import ApiService from '@/services/ApiService'
+
 export default {
   name: 'ContainerSurvey',
   props: ['jsonData', 'lecturePage', 'resultsPage'],
@@ -63,7 +65,13 @@ export default {
 
       let submitBundle = this.bundleSurvey();
 
-      console.log(submitBundle);
+      ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          this.errors.push(error)
+      });
     },
     bundleSurvey() {
       let submitBundle = {
