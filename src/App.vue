@@ -7,8 +7,6 @@
       /></b-col>
       <b-col><ContainerResults 
         :jsonData="jsonData" 
-        :jsonLectures="jsonLectures" 
-        :jsonResults="jsonResults" 
         :lecturePage="lecturePage"
         :resultsPage="resultsPage" 
         @updateResultsPageToApp="changeResultsPage($event)"
@@ -18,12 +16,17 @@
 </template>
 
 <script>
+import ApiService from '@/services/ApiService.js'
+
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
 
-import lectures from './model/dummy-lectures.json'
-import results from './model/dummy-results.json'
-import jsonData from './model/dummy-combined.json'
+//import lectures from './model/dummy-lectures.json'
+//import results from './model/dummy-results.json'
+//import jsonData from './model/dummy-combined.json'
+
+import jsonEmpty from './model/empty.json'
+import { json } from 'body-parser';
 
 export default {
   name: 'App',
@@ -33,11 +36,10 @@ export default {
   },
   data() { 
     return {
-      jsonLectures: lectures,
-      jsonResults: results,
-      jsonData: jsonData,
+      jsonData: jsonEmpty,
       lecturePage: 1,
-      resultsPage: 1
+      resultsPage: 1,
+      keyUpdateProps: 1
     } 
   },
   methods: {
@@ -47,6 +49,15 @@ export default {
     changeResultsPage(value) {
       this.resultsPage = value;
     }
+  },
+  created() {
+    ApiService.getLectures()
+      .then(response => {
+        this.jsonData = JSON.parse(JSON.stringify(response.data));
+      })
+      .catch(error => {
+        this.errors.push(error)
+    })
   }
 }
 </script>

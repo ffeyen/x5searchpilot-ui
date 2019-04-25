@@ -34,7 +34,7 @@ import ContainerSurvey from './ContainerSurvey'
 
 export default {
   name: 'ContainerResults',
-  props: ['lecturePage', 'resultsPage', 'jsonData'],
+  props: ['lecturePage', 'resultsPage', 'jsonData', 'keyUpdateProps'],
   components: {
     HeaderResults,
     ContentResults,
@@ -43,7 +43,7 @@ export default {
   data () {
     return {
       resultsPageVar: 1,
-      resultsPageMax: this.jsonData.lectures[this.lecturePage - 1].attributes.results.length
+      resultsPageMax: ''
     }
   }, 
   methods: {
@@ -54,10 +54,18 @@ export default {
   },
   watch: {
     lecturePage() {
-      this.resultsPageMax = this.jsonData.lectures[this.lecturePage - 1].attributes.results.length;
+      this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length;
+      this.resultsPageVar = 1;
+      this.$emit('updateResultsPageToApp', this.resultsPageVar);
+    },
+    jsonData() {
+      this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length;
       this.resultsPageVar = 1;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
     }
+  },
+  created() {
+    this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length
   }
 }
 </script>

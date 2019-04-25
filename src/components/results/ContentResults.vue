@@ -16,24 +16,24 @@ export default {
   data () {
     return {
       page: this.resultsPage,
-      title: this.jsonData.lectures[0].attributes.results[0].attributes.title,
-      subtitle: this.jsonData.lectures[0].attributes.results[0].attributes.subtitle,
-      describtion: this.jsonData.lectures[0].attributes.results[0].attributes.describtion,
-      tags: this.jsonData.lectures[0].attributes.results[0].attributes.tags,
-      url: this.jsonData.lectures[0].attributes.results[0].attributes.url_result,
-      urlThumbnail: this.jsonData.lectures[0].attributes.results[0].attributes.url_thumbnail
+      title: this.jsonData[0].attributes.results[0].attributes.title,
+      subtitle: this.jsonData[0].attributes.results[0].attributes.subtitle,
+      describtion: this.jsonData[0].attributes.results[0].attributes.describtion,
+      tags: this.jsonData[0].attributes.results[0].attributes.tags,
+      url: this.jsonData[0].attributes.results[0].attributes.url_result,
+      urlThumbnail: this.jsonData[0].attributes.results[0].attributes.url_thumbnail
     }
   },
   methods: {
     updateContentResultsView() {
       var indexLecturePage = this.lecturePage - 1;
       var indexResultsPage = this.resultsPage - 1;
-      this.title = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.title;
-      this.subtitle = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.subtitle;
-      this.describtion = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.describtion;
-      this.tags = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.tags;
-      this.url = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.url_result;
-      this.urlThumbnail = this.jsonData.lectures[indexLecturePage].attributes.results[indexResultsPage].attributes.url_thumbnail;
+      this.title = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].attributes.title;
+      this.subtitle = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].attributes.subtitle;
+      this.describtion = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].attributes.describtion;
+      this.tags = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].attributes.tags;
+      this.url = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].attributes.url_result;
+      this.urlThumbnail = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].attributes.url_thumbnail;
     }
   },
   watch: {
@@ -41,6 +41,9 @@ export default {
       this.updateContentResultsView();
     },
     lecturePage() {
+      this.updateContentResultsView();
+    },
+    jsonData() {
       this.updateContentResultsView();
     }
   }

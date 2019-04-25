@@ -12,18 +12,29 @@ export default {
   props: ['jsonData', 'lecturePage'],
   data () {
     return {
-      title: this.jsonData.lectures[0].attributes.title,
-      subtitle: this.jsonData.lectures[0].attributes.subtitle,
-      describtion: this.jsonData.lectures[0].attributes.describtion,
+      title: '',
+      subtitle: '',
+      describtion: '',
     }
   },
   watch: {
     lecturePage(value) {
       var index = value - 1;
-      this.title = this.jsonData.lectures[index].attributes.title;
-      this.subtitle = this.jsonData.lectures[index].attributes.subtitle;
-      this.describtion = this.jsonData.lectures[index].attributes.describtion;
+      this.title = this.jsonData[index].attributes.title;
+      this.subtitle = this.jsonData[index].attributes.subtitle;
+      this.describtion = this.jsonData[index].attributes.describtion;
+    },
+    jsonData() {
+      var index = this.lecturePage - 1;
+      this.title = this.jsonData[index].attributes.title;
+      this.subtitle = this.jsonData[index].attributes.subtitle;
+      this.describtion = this.jsonData[index].attributes.describtion;
     }
+  },
+  mounted() {
+    this.title = this.jsonData[0].attributes.title;
+    this.subtitle = this.jsonData[0].attributes.subtitle;
+    this.describtion = this.jsonData[0].attributes.describtion;
   }
 }
 </script>

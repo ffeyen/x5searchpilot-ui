@@ -2,7 +2,7 @@
   <b-container class="h-100 w-100">
     <b-col align-v="start">
       <b-row>
-        <HeaderLectures :lecturePageMax="lecturePageMax" @updateLecturePage="changeLecturePage($event)"/>
+        <HeaderLectures :jsonData="jsonData" :lecturePageMax="lecturePageMax" @updateLecturePage="changeLecturePage($event)"/>
       </b-row>
       <b-row>
         <ContentLectures :jsonData="jsonData" :lecturePage="lecturePage" />
@@ -19,18 +19,33 @@ export default {
   name: 'ContainerLectures',
   props: ['jsonData'],
   components: {
-    HeaderLectures,
+    HeaderLectures, 
     ContentLectures
   },
   data () {
     return {
       lecturePage: 1,
-      lecturePageMax: this.jsonData.lectures.length
+      lecturePageMax: ''
     }
   }, 
   methods: {
     changeLecturePage(value) {
       this.lecturePage = value;
+      this.lecturePageMax = this.jsonData.length;
+      this.$emit('updateLecturePageToApp', this.lecturePage)
+    }
+  },
+  mounted() {
+    this.lecturePageMax = this.jsonData.length;
+  },
+  created() {
+    this.lecturePage = 1;
+    this.lecturePageMax = this.jsonData.length;
+  },
+  watch: {
+    jsonData() {
+      this.lecturePage = 1;
+      this.lecturePageMax = this.jsonData.length;
       this.$emit('updateLecturePageToApp', this.lecturePage)
     }
   }
