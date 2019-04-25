@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import ApiService from '@/services/ApiService.js'
 
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
@@ -51,7 +51,7 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost:3030/lectures/')
+    ApiService.getLectures()
       .then(response => {
         this.jsonData = JSON.parse(JSON.stringify(response.data));
       })
