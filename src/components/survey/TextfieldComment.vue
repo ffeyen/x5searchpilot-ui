@@ -8,7 +8,6 @@
       max-rows="3"
       :disabled="submitted"
     ></b-form-textarea>
-    <p>{{ value }}</p>
   </div>
 </template>
 

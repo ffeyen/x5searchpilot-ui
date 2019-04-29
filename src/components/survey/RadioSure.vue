@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text">Wie sicher bist du dir mit der Antwort? ({{ value }})</p>
+    <p class="text">Wie sicher bist du dir mit der Antwort?</p>
     <b-form-radio-group 
       class="text" 
       v-model="value" 
