@@ -3,7 +3,7 @@
     <b-row>
       <b-col><button 
         type="button" 
-        :disabled="resultsPage === 1" 
+        :disabled="resultsPageHeader === 1" 
         @click="changeResultsPage(-1.0)" 
         class="btn btn-outline-dark"
         >zurück</button>
@@ -14,7 +14,7 @@
       </b-col>
       <b-col><button 
         type="button" 
-        :disabled="resultsPage === resultsPageMax" 
+        :disabled="resultsPageHeader === resultsPageMax" 
         @click="changeResultsPage(1.0)" 
         class="btn btn-outline-dark"
         >nächstes</button>
@@ -26,26 +26,29 @@
 <script>
 export default {
   name: 'HeaderResults',
-  props: ['resultsPageMax', 'lecturePage'],
+  props: ['resultsPageMax', 'lecturePage', 'resultsPage'],
   data () {
     return {
-      resultsPage: 1
+      resultsPageHeader: 1
     }
   },
   methods: {
     changeResultsPage(pageChange) {
-      this.resultsPage = this.resultsPage + pageChange;
-      this.$emit('updateResultsPage', this.resultsPage);
+      this.resultsPageHeader = this.resultsPageHeader + pageChange;
+      this.$emit('updateResultsPage', this.resultsPageHeader);
     }
   },
   watch: {
     resultsPageMax() {
-      if (this.resultsPage >= this.resultsPageMax) {
-        this.resultsPage = this.resultsPageMax;
+      if (this.resultsPageHeader >= this.resultsPageMax) {
+        this.resultsPageHeader = this.resultsPageMax;
       }
     },
     lecturePage() {
-      this.resultsPage = 1;
+      this.resultsPageHeader = 1;
+    },
+    resultsPage() {
+      this.resultsPageHeader = this.resultsPage;
     }
   }
 }

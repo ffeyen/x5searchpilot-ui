@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text">Wie gut passt das gezeigte Suchergebnis zur Vorlesung? ({{ value }})</p>
+    <p class="text">Wie gut passt das gezeigte Suchergebnis zur Vorlesung?</p>
     <b-form-radio-group 
       class="text" 
       v-model="value" 

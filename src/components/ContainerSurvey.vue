@@ -45,7 +45,7 @@ import ApiService from '@/services/ApiService'
 
 export default {
   name: 'ContainerSurvey',
-  props: ['jsonData', 'lecturePage', 'resultsPage'],
+  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax'],
   components: {
     RadioFit,
     RadioSure,
@@ -56,31 +56,48 @@ export default {
       surveyRadioFit: '',
       surveyRadioSure: '',
       surveyTextComment: '',
-      submitted: false
+      submitted: false,
+      resultsPageSubmit: this.resultsPage,
+      localStorageKeyPrefix: 'x5pilot',
+      localStorageKey: '',
+      toastSubmitMsg: "Absenden erfolgreich",
+      toastSubmitFalseMsg: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
+      toastSubmit: { 
+        theme: "toasted-primary", 
+        position: "bottom-right", 
+        duration: 3000, 
+        fullWidth: true
+      }
     }
   },
   methods: {
     submit() {
-      this.submitted = true;
+      if (!this.surveyRadioFit || !this.surveyRadioSure) {
+        this.$toasted.show(this.toastSubmitFalseMsg, this.toastSubmit);
+      } else {
+        let submitBundle = this.bundleSurvey();
 
-      let submitBundle = this.bundleSurvey();
+        ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
+          .then(response => {
+          })
+          .catch(error => {
+            this.errors.push(error)
+        });
 
-      ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          this.errors.push(error)
-      });
+        this.saveToLocalStorage(submitBundle);
+        this.submitted = true;
+        this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
+        this.nextPage();
+      };
     },
     bundleSurvey() {
       let submitBundle = {
-        lectureId: this.jsonData[this.lecturePage - 1].id,
-        resultId: this.jsonData[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id,
+        lectureId: Number(this.jsonData[this.lecturePage - 1].id),
+        resultId: Number(this.jsonData[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id),
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
         textComment: this.surveyTextComment,
-        submitDate: JSON.stringify(new Date())
+        submitDate: new Date()
       };
 
       return submitBundle;
@@ -93,21 +110,58 @@ export default {
     },
     updateTextComment: function(value) {
       this.surveyTextComment = value;
+    },
+    nextPage: function() {
+      if (this.resultsPage < this.resultsPageMax) {
+        this.resultsPageSubmit++;
+        this.$emit('updateResultsPage', this.resultsPageSubmit);
+        this.resetForms();
+      }
+    },
+    resetForms() {
+      this.surveyRadioFit = '';
+      this.surveyRadioSure = '';
+      this.surveyTextComment = '';
+      this.submitted = false;
+    },
+    saveToLocalStorage(bundle) {
+      let submitBundleStringified = JSON.stringify(bundle);
+      localStorage.setItem(this.localStorageKey, submitBundleStringified);
+    },
+    makeLocalStorageKeyName() {
+      let keyName = 
+        this.localStorageKeyPrefix 
+        + "-l" + Number(this.lecturePage - 1) 
+        + "-r" + Number(this.resultsPage - 1);
+      this.localStorageKey = keyName;
+    },
+    loadFromLocalStorage() {
+      if (localStorage.getItem(this.localStorageKey) !== null) {
+        let bundleLocalStorage = JSON.parse(localStorage.getItem(this.localStorageKey));
+          this.surveyRadioFit = bundleLocalStorage.radioFit;
+          this.surveyRadioSure = bundleLocalStorage.radioSure;
+          this.surveyTextComment = bundleLocalStorage.textComment;
+          this.submitted = true;
+      } 
     }
   }, 
   watch: {
     lecturePage() {
-        this.surveyRadioFit = '';
-        this.surveyRadioSure = '';
-        this.surveyTextComment = '';
-        this.submitted = false;
+      this.resetForms();
+      this.resultsPageSubmit = this.resultsPage;
+      this.makeLocalStorageKeyName();
+      this.loadFromLocalStorage();
     },
     resultsPage() {
-        this.surveyRadioFit = '';
-        this.surveyRadioSure = '';
-        this.surveyTextComment = '';
-        this.submitted = false;
+      this.resetForms();
+      this.resultsPageSubmit = this.resultsPage;
+      this.makeLocalStorageKeyName();
+      this.loadFromLocalStorage();
     }
+  },
+  created() {
+    this.makeLocalStorageKeyName();
+    this.loadFromLocalStorage();
   }
 }
 </script>
