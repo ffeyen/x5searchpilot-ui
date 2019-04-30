@@ -21,6 +21,8 @@
           :jsonData="jsonData" 
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
+          :resultsPageMax="resultsPageMax"
+          @updateResultsPage="changeResultsPage($event)"
         />
       </b-row>
     </b-col>

@@ -45,7 +45,7 @@ import ApiService from '@/services/ApiService'
 
 export default {
   name: 'ContainerSurvey',
-  props: ['jsonData', 'lecturePage', 'resultsPage'],
+  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax'],
   components: {
     RadioFit,
     RadioSure,
@@ -56,20 +56,36 @@ export default {
       surveyRadioFit: '',
       surveyRadioSure: '',
       surveyTextComment: '',
-      submitted: false
+      submitted: false,
+      resultsPageSubmit: this.resultsPage,
+      toastSubmitMsg: "Absenden erfolgreich",
+      toastSubmitFalseMsg: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
+      toastSubmit: { 
+        theme: "toasted-primary", 
+        position: "bottom-right", 
+        duration: 3000, 
+        fullWidth: true
+      }
     }
   },
   methods: {
     submit() {
-      let submitBundle = this.bundleSurvey();
+      if (!this.surveyRadioFit || !this.surveyRadioSure) {
+        this.$toasted.show(this.toastSubmitFalseMsg, this.toastSubmit);
+      } else {
+        let submitBundle = this.bundleSurvey();
 
-      ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
-        .then(response => {
-          this.submitted = true;
-        })
-        .catch(error => {
-          this.errors.push(error)
-      });
+        ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
+          .then(response => {
+          })
+          .catch(error => {
+            this.errors.push(error)
+        });
+
+        this.submitted = true;
+        this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
+        this.nextPage();
+      };
     },
     bundleSurvey() {
       let submitBundle = {
@@ -91,20 +107,29 @@ export default {
     },
     updateTextComment: function(value) {
       this.surveyTextComment = value;
+    },
+    nextPage: function() {
+      console.log("nextPage()");
+      if (this.resultsPage < this.resultsPageMax) {
+        this.resultsPageSubmit++;
+        this.$emit('updateResultsPage', this.resultsPageSubmit);
+        this.resetForms();
+      }
+    },
+    resetForms() {
+      this.surveyRadioFit = '';
+      this.surveyRadioSure = '';
+      this.surveyTextComment = '';
+      this.submitted = false;
     }
   }, 
   watch: {
     lecturePage() {
-        this.surveyRadioFit = '';
-        this.surveyRadioSure = '';
-        this.surveyTextComment = '';
-        this.submitted = false;
+      this.resetForms();
+      this.resultsPageSubmit = this.resultsPage;
     },
     resultsPage() {
-        this.surveyRadioFit = '';
-        this.surveyRadioSure = '';
-        this.surveyTextComment = '';
-        this.submitted = false;
+      this.resetForms();
     }
   }
 }
