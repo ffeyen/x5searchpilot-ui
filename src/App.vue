@@ -21,10 +21,6 @@ import ApiService from '@/services/ApiService.js'
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
 
-//import lectures from './model/dummy-lectures.json'
-//import results from './model/dummy-results.json'
-//import jsonData from './model/dummy-combined.json'
-
 import jsonEmpty from './model/empty.json'
 import { json } from 'body-parser';
 

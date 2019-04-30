@@ -1,12 +1,24 @@
 <template>
   <div>
     <b-row>
-      <b-col><button :disabled="lecturePage === 1"  @click="changeLecturePage(-1.0)" type="button" class="btn btn-outline-dark">zurück</button></b-col>
+      <b-col><button 
+        :disabled="lecturePage === 1"  
+        @click="changeLecturePage(-1.0)" 
+        type="button" 
+        class="btn btn-outline-dark"
+        >zurück</button>
+      </b-col>
       <b-col>
         <h2>Vorlesung</h2>
         <p>{{ lecturePage }} von {{ lecturePageMax }}</p>
       </b-col>
-      <b-col><button :disabled="lecturePage === lecturePageMax"  @click="changeLecturePage(1.0)" type="button" class="btn btn-outline-dark">nächste</button></b-col>
+      <b-col><button 
+        :disabled="lecturePage === lecturePageMax"  
+        @click="changeLecturePage(1.0)" 
+        type="button" 
+        class="btn btn-outline-dark"
+        >nächste</button>
+      </b-col>
     </b-row>
   </div>
 </template>

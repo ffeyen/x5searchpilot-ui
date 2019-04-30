@@ -2,10 +2,17 @@
   <b-container class="h-100 w-100">
     <b-col align-v="start">
       <b-row>
-        <HeaderLectures :jsonData="jsonData" :lecturePageMax="lecturePageMax" @updateLecturePage="changeLecturePage($event)"/>
+        <HeaderLectures 
+          :jsonData="jsonData" 
+          :lecturePageMax="lecturePageMax" 
+          @updateLecturePage="changeLecturePage($event)"
+        />
       </b-row>
       <b-row>
-        <ContentLectures :jsonData="jsonData" :lecturePage="lecturePage" />
+        <ContentLectures 
+          :jsonData="jsonData" 
+          :lecturePage="lecturePage"
+        />
       </b-row>
     </b-col>
   </b-container>

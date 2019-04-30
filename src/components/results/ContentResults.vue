@@ -2,7 +2,13 @@
   <b-container class="mh-100">
     <h3 class="text">{{ title }}</h3>
     <b-row>
-      <b-col class="col-thumbnail"><b-img class="thumbnail" :src="urlThumbnail" :alt="title"></b-img></b-col>
+      <b-col class="col-thumbnail">
+        <b-img 
+          class="thumbnail" 
+          :src="urlThumbnail" 
+          :alt="title">
+        </b-img>
+      </b-col>
       <b-col><p class="cut-text max-lines-10 text">{{ subtitle }}</p></b-col>
     </b-row>
     <p class="cut-text max-lines-1 text link"><a :href="url" target="_blank">{{ url }}</a></p>
