@@ -58,6 +58,8 @@ export default {
       surveyTextComment: '',
       submitted: false,
       resultsPageSubmit: this.resultsPage,
+      localStorageKeyPrefix: 'x5pilot',
+      localStorageKey: '',
       toastSubmitMsg: "Absenden erfolgreich",
       toastSubmitFalseMsg: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
       toastSubmit: { 
@@ -82,6 +84,7 @@ export default {
             this.errors.push(error)
         });
 
+        this.saveToLocalStorage(submitBundle);
         this.submitted = true;
         this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
         this.nextPage();
@@ -109,7 +112,6 @@ export default {
       this.surveyTextComment = value;
     },
     nextPage: function() {
-      console.log("nextPage()");
       if (this.resultsPage < this.resultsPageMax) {
         this.resultsPageSubmit++;
         this.$emit('updateResultsPage', this.resultsPageSubmit);
@@ -121,16 +123,45 @@ export default {
       this.surveyRadioSure = '';
       this.surveyTextComment = '';
       this.submitted = false;
+    },
+    saveToLocalStorage(bundle) {
+      let submitBundleStringified = JSON.stringify(bundle);
+      localStorage.setItem(this.localStorageKey, submitBundleStringified);
+    },
+    makeLocalStorageKeyName() {
+      let keyName = 
+        this.localStorageKeyPrefix 
+        + "-l" + Number(this.lecturePage - 1) 
+        + "-r" + Number(this.resultsPage - 1);
+      this.localStorageKey = keyName;
+    },
+    loadFromLocalStorage() {
+      if (localStorage.getItem(this.localStorageKey) !== null) {
+        let bundleLocalStorage = JSON.parse(localStorage.getItem(this.localStorageKey));
+          this.surveyRadioFit = bundleLocalStorage.radioFit;
+          this.surveyRadioSure = bundleLocalStorage.radioSure;
+          this.surveyTextComment = bundleLocalStorage.textComment;
+          this.submitted = true;
+      } 
     }
   }, 
   watch: {
     lecturePage() {
       this.resetForms();
       this.resultsPageSubmit = this.resultsPage;
+      this.makeLocalStorageKeyName();
+      this.loadFromLocalStorage();
     },
     resultsPage() {
       this.resetForms();
+      this.resultsPageSubmit = this.resultsPage;
+      this.makeLocalStorageKeyName();
+      this.loadFromLocalStorage();
     }
+  },
+  created() {
+    this.makeLocalStorageKeyName();
+    this.loadFromLocalStorage();
   }
 }
 </script>
