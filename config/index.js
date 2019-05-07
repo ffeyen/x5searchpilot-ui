@@ -51,6 +51,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/x5pilot/',
+    favicon: 'src/static/favicon.ico',
 
     /**
      * Source Maps

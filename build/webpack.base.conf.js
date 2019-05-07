@@ -20,7 +20,6 @@ const createLintingRule = () => ({
 })
 
 module.exports = {
-  favicon: 'src/static/favicon.ico',
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -41,7 +40,6 @@ module.exports = {
   },
   module: {
     rules: [
-      //Eslint nervt!
       //...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
