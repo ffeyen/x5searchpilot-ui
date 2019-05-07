@@ -45,7 +45,7 @@ import ApiService from '@/services/ApiService'
 
 export default {
   name: 'ContainerSurvey',
-  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax'],
+  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax', 'uuid'],
   components: {
     RadioFit,
     RadioSure,
@@ -97,7 +97,8 @@ export default {
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
         textComment: this.surveyTextComment,
-        submitDate: new Date()
+        submitDate: new Date(),
+        uuid: this.uuid
       };
 
       return submitBundle;

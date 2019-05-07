@@ -22,6 +22,7 @@
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
           :resultsPageMax="resultsPageMax"
+          :uuid="uuid"
           @updateResultsPage="changeResultsPage($event)"
         />
       </b-row>
@@ -36,7 +37,7 @@ import ContainerSurvey from './ContainerSurvey'
 
 export default {
   name: 'ContainerResults',
-  props: ['lecturePage', 'resultsPage', 'jsonData', 'keyUpdateProps'],
+  props: ['lecturePage', 'resultsPage', 'jsonData', 'keyUpdateProps', 'uuid'],
   components: {
     HeaderResults,
     ContentResults,

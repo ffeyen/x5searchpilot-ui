@@ -9,6 +9,7 @@
         :jsonData="jsonData" 
         :lecturePage="lecturePage"
         :resultsPage="resultsPage"
+        :uuid="uuid"
         @updateResultsPageToApp="changeResultsPage($event)"
       /></b-col>
     </b-row>
