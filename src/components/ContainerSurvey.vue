@@ -93,13 +93,14 @@ export default {
     },
     bundleSurvey() {
       let submitBundle = {
+        uuid: this.uuid,
         lectureId: Number(this.jsonData[this.lecturePage - 1].id),
         resultId: Number(this.jsonData[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id),
+        localStorageKey: this.localStorageKey,
+        submitDate: new Date(),
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
-        textComment: this.surveyTextComment,
-        submitDate: new Date(),
-        uuid: this.uuid
+        textComment: this.surveyTextComment
       };
 
       return submitBundle;
