@@ -61,7 +61,8 @@ export default {
       localStorageKeyPrefix: 'x5pilot',
       localStorageKey: '',
       toastSubmitMsg: "Absenden erfolgreich",
-      toastSubmitFalseMsg: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
+      toastSubmitMsgFalse: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
+      toastSubmitMsgBasReq: "Speichern nicht möglich. Bitte Admin kontaktieren.",
       toastSubmit: { 
         theme: "toasted-primary", 
         position: "bottom-right", 
@@ -73,21 +74,21 @@ export default {
   methods: {
     submit() {
       if (!this.surveyRadioFit || !this.surveyRadioSure) {
-        this.$toasted.show(this.toastSubmitFalseMsg, this.toastSubmit);
+        this.$toasted.show(this.toastSubmitMsgFalse, this.toastSubmit);
       } else {
         let submitBundle = this.bundleSurvey();
 
         ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
           .then(response => {
+            this.saveToLocalStorage(submitBundle);
+            this.submitted = true;
+            this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
+            this.nextPage();
           })
           .catch(error => {
+            this.$toasted.show(this.toastSubmitMsgBasReq, this.toastSubmit);
             this.errors.push(error)
         });
-
-        this.saveToLocalStorage(submitBundle);
-        this.submitted = true;
-        this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
-        this.nextPage();
       };
     },
     bundleSurvey() {
