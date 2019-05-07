@@ -8,7 +8,7 @@
       <b-col><ContainerResults 
         :jsonData="jsonData" 
         :lecturePage="lecturePage"
-        :resultsPage="resultsPage" 
+        :resultsPage="resultsPage"
         @updateResultsPageToApp="changeResultsPage($event)"
       /></b-col>
     </b-row>
@@ -17,6 +17,7 @@
 
 <script>
 import ApiService from '@/services/ApiService.js'
+import { uuid } from 'vue-uuid';
 
 import ContainerLectures from '@/components/ContainerLectures'
 import ContainerResults from '@/components/ContainerResults'
@@ -35,7 +36,9 @@ export default {
       jsonData: jsonEmpty,
       lecturePage: 1,
       resultsPage: 1,
-      keyUpdateProps: 1
+      keyUpdateProps: 1,
+      localStorageKeyUuid: 'x5pilot-uuid',
+      uuid: uuid.v1()
     } 
   },
   methods: {
@@ -44,6 +47,13 @@ export default {
     },
     changeResultsPage(value) {
       this.resultsPage = value;
+    },
+    createUID() {
+      if (localStorage.getItem(this.localStorageKeyUuid) === null) {
+        localStorage.setItem(this.localStorageKeyUuid, this.uuid);
+      } else {
+        this.uuid = localStorage.getItem(this.localStorageKeyUuid)
+      }
     }
   },
   created() {
@@ -54,8 +64,13 @@ export default {
       .catch(error => {
         this.errors.push(error)
     })
+  },
+  mounted() {
+     {
+      this.createUID();
+    }
   }
-}
+} 
 </script>
 
 <style>
