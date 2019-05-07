@@ -9,7 +9,7 @@
         @click="changeLecturePage()" 
         type="button" 
         class="btn btn-outline-dark"
-        >nächste</button>
+        >zufällige Vorlesung</button>
       </b-col>
     </b-row>
   </div>
@@ -28,12 +28,11 @@ export default {
     changeLecturePage() {
       this.lecturePage = this.generateRandomPageNumber(this.lecturePage)
       this.$emit('updateLecturePage', this.lecturePage)
-      console.log(this.lecturePage)
     },
     generateRandomPageNumber(currentPage) { 
       let rndPage
       do {
-        rndPage = Math.floor(Math.random() * (this.lecturePageMax)) + 1;
+        rndPage = Math.floor(Math.random() * (this.lecturePageMax)) + 1
       } while(currentPage === rndPage)
       return rndPage
     }

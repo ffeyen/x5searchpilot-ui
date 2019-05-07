@@ -3,6 +3,7 @@
     <b-col align-v="start">
       <b-row>
         <HeaderResults
+          :jsonData="jsonData" 
           :resultsPageMax="resultsPageMax"
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"

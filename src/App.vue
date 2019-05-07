@@ -55,21 +55,21 @@ export default {
       } else {
         this.uuid = localStorage.getItem(this.localStorageKeyUuid)
       }
+    },
+    getDataFromApi() {
+      ApiService.getLectures()
+      .then(response => {
+        this.jsonData = JSON.parse(JSON.stringify(response.data))
+      })
+      .catch(error => {
+        console.log("Error: Could not get data from API (App.vue:getDataFromApi():getLectures())")
+        this.errors.push(error)
+      })
     }
   },
   created() {
-    ApiService.getLectures()
-      .then(response => {
-        this.jsonData = JSON.parse(JSON.stringify(response.data));
-      })
-      .catch(error => {
-        this.errors.push(error)
-    })
-  },
-  mounted() {
-     {
-      this.createUID();
-    }
+    this.getDataFromApi()
+    this.createUID()
   }
 } 
 </script>
