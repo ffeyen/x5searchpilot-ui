@@ -1,6 +1,6 @@
 <template>
   <b-container class="mh-100">
-    <h5 class="text"><b>{{ type.toUpperCase() }}</b>provided by {{ provider }}</h5>
+    <h5 class="text"><b>{{ type.toUpperCase() }}</b> | <b>{{ provider }}</b></h5>
     <h3 class="text">{{ title }}</h3>
     <p v-if="description !== null" class="cut-text max-lines-10 text">{{ description }}</p>
     <p v-if="description === null" class="cut-text max-lines-10 text"><i>Keine Beschreibung vorhanden</i></p>
@@ -9,7 +9,7 @@
       :href="url" 
       target="_blank" 
       @click="urlIsClicked()"
-      >{{ url }}</a>
+      >öffne Resource im neuen Fenster</a>
     </p>
   </b-container>
 </template>
@@ -94,7 +94,7 @@ a {
 }
 
 .max-lines-10 {
-  -webkit-line-clamp: 10;
+  
 }
 
 .link {

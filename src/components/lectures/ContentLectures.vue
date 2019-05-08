@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h5 class="description text">{{ semester}} / {{ faculty }}</h5>
+    <h5 class="description text">Uni Osnabrück | {{ semester}} |<b>{{ faculty }}</b></h5>
     <h3 class="text">{{ title }}</h3>
     <p class="description text">{{ description }}</p>
     <template v-if="lang_origin !== 'en'">
