@@ -1,17 +1,20 @@
-[{
+[
+  {
     "attributes": {
       "title": "",
-      "subtitle": "",
+      "title_translated": "",
       "describtion": "",
-      "results": [{
-        "attributes": {
+      "describtion_translated": "",
+      "language": "",
+      "results": [
+        {
           "title": "",
-          "subtitle": "",
           "describtion": "",
-          "tags": [""],
-          "url_result": "https://",
-          "url_thumbnail": "https://"
-          }
-        }]
-      }
-}]
+          "url": "https://",
+          "type": "",
+          "provider": ""
+        }
+      ]
+    }
+  }
+]

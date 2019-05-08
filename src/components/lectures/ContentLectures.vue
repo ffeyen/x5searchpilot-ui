@@ -18,8 +18,7 @@ export default {
   data () {
     return {
       title: '',
-      subtitle: '',
-      subtitle_translated: '',
+      title_translated: '',
       description: '',
       description_translated: '',
       semester: '',
