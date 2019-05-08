@@ -1,12 +1,16 @@
 <template>
   <div>
     <b-row>
-      <b-col><button :disabled="lecturePage === 1"  @click="changeLecturePage(-1.0)" type="button" class="btn btn-outline-dark">zurück</button></b-col>
       <b-col>
         <h2>Vorlesung</h2>
-        <p>{{ lecturePage }} von {{ lecturePageMax }}</p>
+        <p>zufällige Vorlesung</p>
       </b-col>
-      <b-col><button :disabled="lecturePage === lecturePageMax"  @click="changeLecturePage(1.0)" type="button" class="btn btn-outline-dark">nächste</button></b-col>
+      <b-col><button 
+        @click="changeLecturePage()" 
+        type="button" 
+        class="btn btn-outline-dark"
+        >zufällige Vorlesung</button>
+      </b-col>
     </b-row>
   </div>
 </template>
@@ -21,9 +25,16 @@ export default {
     }
   },
   methods: {
-    changeLecturePage(pageChange) {
-      this.lecturePage = this.lecturePage + pageChange;
-      this.$emit('updateLecturePage', this.lecturePage);
+    changeLecturePage() {
+      this.lecturePage = this.generateRandomPageNumber(this.lecturePage)
+      this.$emit('updateLecturePage', this.lecturePage)
+    },
+    generateRandomPageNumber(currentPage) { 
+      let rndPage
+      do {
+        rndPage = Math.floor(Math.random() * (this.lecturePageMax)) + 1
+      } while(currentPage === rndPage)
+      return rndPage
     }
   }
 }

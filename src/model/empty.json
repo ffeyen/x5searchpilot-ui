@@ -1,34 +1,20 @@
-[{
+[
+  {
     "attributes": {
       "title": "",
-      "subtitle": "",
+      "title_translated": "",
       "describtion": "",
-      "results": [{
-        "attributes": {
+      "describtion_translated": "",
+      "language": "",
+      "results": [
+        {
           "title": "",
-          "subtitle": "",
           "describtion": "",
-          "tags": ["tag1", "tag2", "tag3"],
-          "url_result": "https://google.com",
-          "url_thumbnail": "https://via.placeholder.com/150/FFFFFF?text=empty1"
-          }
-        }]
-      }
-},
-{
-  "attributes": {
-    "title": "",
-    "subtitle": "",
-    "describtion": "", 
-    "results": [{
-      "attributes": {
-        "title": "",
-        "subtitle": "",
-        "describtion": "",
-        "tags": ["tag1", "tag2", "tag3"],
-        "url_result": "https://google.com",
-        "url_thumbnail": "https://via.placeholder.com/150/FFFFFF?text=empty2"
+          "url": "https://",
+          "type": "",
+          "provider": ""
         }
-      }]
+      ]
     }
-}]
+  }
+]

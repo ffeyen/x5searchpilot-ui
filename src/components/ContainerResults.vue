@@ -3,6 +3,7 @@
     <b-col align-v="start">
       <b-row>
         <HeaderResults
+          :jsonData="jsonData" 
           :resultsPageMax="resultsPageMax"
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
@@ -14,6 +15,7 @@
           :jsonData="jsonData" 
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
+          @urlIsClicked="urlIsClicked($event)"
         />
       </b-row>
       <b-row class="w-100">
@@ -22,6 +24,8 @@
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
           :resultsPageMax="resultsPageMax"
+          :urlClickCount="urlClickCount"
+          :uuid="uuid"
           @updateResultsPage="changeResultsPage($event)"
         />
       </b-row>
@@ -36,7 +40,7 @@ import ContainerSurvey from './ContainerSurvey'
 
 export default {
   name: 'ContainerResults',
-  props: ['lecturePage', 'resultsPage', 'jsonData', 'keyUpdateProps'],
+  props: ['lecturePage', 'resultsPage', 'jsonData', 'keyUpdateProps', 'uuid'],
   components: {
     HeaderResults,
     ContentResults,
@@ -45,24 +49,31 @@ export default {
   data () {
     return {
       resultsPageVar: 1,
-      resultsPageMax: ''
+      resultsPageMax: '',
+      urlClickCount: 0
     }
   }, 
   methods: {
     changeResultsPage(value) {
       this.resultsPageVar = value;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
+      this.urlClickCount = 0;
+    },
+    urlIsClicked() {
+      this.urlClickCount++;
     }
   },
   watch: {
     lecturePage() {
       this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length;
       this.resultsPageVar = 1;
+      this.urlClickCount = 0;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
     },
     jsonData() {
       this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length;
       this.resultsPageVar = 1;
+      this.urlClickCount = 0;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
     }
   },
@@ -78,6 +89,7 @@ export default {
   margin: 0px auto;
   padding: 0px !important;
   text-overflow: ellipsis;
+  overflow: auto;
   background: rgb(183, 243, 229);
 }
 </style>

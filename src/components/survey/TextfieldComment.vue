@@ -22,7 +22,6 @@ export default {
   watch: {
     value: function(value) {
       this.$emit('changeTextComment', value)
-      //console.log("TextComment: emits event / value: " + this.value);
     },
       surveyTextComment() {
         this.value = this.surveyTextComment; 

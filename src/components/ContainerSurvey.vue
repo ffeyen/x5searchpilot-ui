@@ -45,7 +45,7 @@ import ApiService from '@/services/ApiService'
 
 export default {
   name: 'ContainerSurvey',
-  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax'],
+  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax', 'uuid', 'urlClickCount'],
   components: {
     RadioFit,
     RadioSure,
@@ -61,7 +61,8 @@ export default {
       localStorageKeyPrefix: 'x5pilot',
       localStorageKey: '',
       toastSubmitMsg: "Absenden erfolgreich",
-      toastSubmitFalseMsg: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
+      toastSubmitMsgFalse: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
+      toastSubmitMsgBasReq: "Speichern nicht m?glich. Bitte Admin kontaktieren.",
       toastSubmit: { 
         theme: "toasted-primary", 
         position: "bottom-right", 
@@ -73,31 +74,34 @@ export default {
   methods: {
     submit() {
       if (!this.surveyRadioFit || !this.surveyRadioSure) {
-        this.$toasted.show(this.toastSubmitFalseMsg, this.toastSubmit);
+        this.$toasted.show(this.toastSubmitMsgFalse, this.toastSubmit);
       } else {
         let submitBundle = this.bundleSurvey();
 
         ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
           .then(response => {
+            this.saveToLocalStorage(submitBundle);
+            this.submitted = true;
+            this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
+            this.nextPage();
           })
           .catch(error => {
+            this.$toasted.show(this.toastSubmitMsgBasReq, this.toastSubmit);
             this.errors.push(error)
         });
-
-        this.saveToLocalStorage(submitBundle);
-        this.submitted = true;
-        this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
-        this.nextPage();
       };
     },
     bundleSurvey() {
       let submitBundle = {
+        uuid: this.uuid,
         lectureId: Number(this.jsonData[this.lecturePage - 1].id),
-        resultId: Number(this.jsonData[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id),
+        resultId: Number(this.resultsPage - 1),
+        localStorageKey: this.localStorageKey,
+        submitDate: new Date(),
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
         textComment: this.surveyTextComment,
-        submitDate: new Date()
+        urlClickCount: this.urlClickCount
       };
 
       return submitBundle;
@@ -123,6 +127,7 @@ export default {
       this.surveyRadioSure = '';
       this.surveyTextComment = '';
       this.submitted = false;
+      this.urlClickCount = 0;
     },
     saveToLocalStorage(bundle) {
       let submitBundleStringified = JSON.stringify(bundle);
