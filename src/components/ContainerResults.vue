@@ -15,6 +15,7 @@
           :jsonData="jsonData" 
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
+          @urlIsClicked="urlIsClicked($event)"
         />
       </b-row>
       <b-row class="w-100">
@@ -23,6 +24,7 @@
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
           :resultsPageMax="resultsPageMax"
+          :urlClickCount="urlClickCount"
           :uuid="uuid"
           @updateResultsPage="changeResultsPage($event)"
         />
@@ -47,24 +49,31 @@ export default {
   data () {
     return {
       resultsPageVar: 1,
-      resultsPageMax: ''
+      resultsPageMax: '',
+      urlClickCount: 0
     }
   }, 
   methods: {
     changeResultsPage(value) {
       this.resultsPageVar = value;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
+      this.urlClickCount = 0;
+    },
+    urlIsClicked() {
+      this.urlClickCount++;
     }
   },
   watch: {
     lecturePage() {
       this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length;
       this.resultsPageVar = 1;
+      this.urlClickCount = 0;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
     },
     jsonData() {
       this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length;
       this.resultsPageVar = 1;
+      this.urlClickCount = 0;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
     }
   },

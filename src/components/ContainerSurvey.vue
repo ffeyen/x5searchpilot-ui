@@ -45,7 +45,7 @@ import ApiService from '@/services/ApiService'
 
 export default {
   name: 'ContainerSurvey',
-  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax', 'uuid'],
+  props: ['jsonData', 'lecturePage', 'resultsPage', 'resultsPageMax', 'uuid', 'urlClickCount'],
   components: {
     RadioFit,
     RadioSure,
@@ -62,7 +62,7 @@ export default {
       localStorageKey: '',
       toastSubmitMsg: "Absenden erfolgreich",
       toastSubmitMsgFalse: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
-      toastSubmitMsgBasReq: "Speichern nicht möglich. Bitte Admin kontaktieren.",
+      toastSubmitMsgBasReq: "Speichern nicht m?glich. Bitte Admin kontaktieren.",
       toastSubmit: { 
         theme: "toasted-primary", 
         position: "bottom-right", 
@@ -95,12 +95,13 @@ export default {
       let submitBundle = {
         uuid: this.uuid,
         lectureId: Number(this.jsonData[this.lecturePage - 1].id),
-        resultId: Number(this.jsonData[this.lecturePage - 1].attributes.results[this.resultsPage - 1].result_id),
+        resultId: Number(this.resultsPage - 1),
         localStorageKey: this.localStorageKey,
         submitDate: new Date(),
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
-        textComment: this.surveyTextComment
+        textComment: this.surveyTextComment,
+        urlClickCount: this.urlClickCount
       };
 
       return submitBundle;
@@ -126,6 +127,7 @@ export default {
       this.surveyRadioSure = '';
       this.surveyTextComment = '';
       this.submitted = false;
+      this.urlClickCount = 0;
     },
     saveToLocalStorage(bundle) {
       let submitBundleStringified = JSON.stringify(bundle);

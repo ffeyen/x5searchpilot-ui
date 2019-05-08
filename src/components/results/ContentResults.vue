@@ -4,7 +4,13 @@
     <h3 class="text">{{ title }}</h3>
     <p v-if="description !== null" class="cut-text max-lines-10 text">{{ description }}</p>
     <p v-if="description === null" class="cut-text max-lines-10 text"><i>Keine Beschreibung vorhanden</i></p>
-    <p class="cut-text max-lines-1 text link"><a :href="url" target="_blank">{{ url }}</a></p>
+    <p class="cut-text max-lines-1 text link">
+      <a 
+      :href="url" 
+      target="_blank" 
+      @click="urlIsClicked()"
+      >{{ url }}</a>
+    </p>
   </b-container>
 </template>
 
@@ -33,6 +39,9 @@ export default {
       this.url = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].url
       this.type = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].type
       this.provider = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].provider
+    },
+    urlIsClicked() {
+      this.$emit('urlIsClicked');
     }
   },
   watch: {
