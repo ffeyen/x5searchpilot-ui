@@ -2,14 +2,20 @@
   <b-container class="mh-100">
     <h5 class="text"><b>{{ type.toUpperCase() }}</b> | <b>{{ provider }}</b></h5>
     <h3 class="text">{{ title }}</h3>
-    <p v-if="description !== null" class="cut-text max-lines-10 text">{{ description }}</p>
-    <p v-if="description === null" class="cut-text max-lines-10 text"><i>Keine Beschreibung vorhanden</i></p>
-    <p class="cut-text max-lines-1 text link">
+    <p v-if="description !== null" class="cut-text text">{{ description }}</p>
+    <p v-if="description === null" class="cut-text text"><i>Keine Beschreibung vorhanden</i></p>
+    <p class="cut-text text link">
       <a 
       :href="url" 
       target="_blank" 
       @click="urlIsClicked()"
-      >öffne Resource im neuen Fenster</a>
+      >im neuen Fenster öffnen</a>
+    </p>
+    <p class="cut-text text link">
+      <a 
+      :href="urlToGoogleTranslate" 
+      target="_blank"
+      >übersetzen (Google Translate)</a>
     </p>
   </b-container>
 </template>
@@ -26,7 +32,8 @@ export default {
       tags: this.jsonData[0].attributes.results[0].tags,
       url: this.jsonData[0].attributes.results[0].url,
       type: this.jsonData[0].attributes.results[0].type,
-      provider: this.jsonData[0].attributes.results[0].provider
+      provider: this.jsonData[0].attributes.results[0].provider,
+      urlToGoogleTranslate: ''
     }
   },
   methods: {
@@ -39,9 +46,18 @@ export default {
       this.url = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].url
       this.type = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].type
       this.provider = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].provider
+      this.parseGoogleTranslateUrl()
     },
     urlIsClicked() {
       this.$emit('urlIsClicked');
+    },
+    parseGoogleTranslateUrl() {
+      let baseUrl = "https://translate.google.de/?ie=UTF-8&client=tw-ob#view=home&op=translate&sl=auto&tl=de&text=";
+      if (this.description === null) {
+        this.urlToGoogleTranslate = baseUrl + this.title;
+      } else {
+        this.urlToGoogleTranslate = baseUrl + this.title + "%0A" + this.description;
+      }
     }
   },
   watch: {
@@ -89,15 +105,13 @@ a {
   padding-bottom: 1rem;
 }
 
-.max-lines-1 {
-  -webkit-line-clamp: 1;
-}
-
-.max-lines-10 {
-  
-}
-
 .link {
+  padding-bottom: 0rem;
+  overflow: hidden;
+}
+
+.link:last-of-type {
+  padding-top: 0rem;
   padding-bottom: 3rem;
 }
 
