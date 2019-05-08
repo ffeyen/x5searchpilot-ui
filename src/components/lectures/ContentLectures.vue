@@ -2,7 +2,7 @@
   <b-container>
     <h3 class="text">{{ title }}</h3>
     <p class="max-lines-3 text">{{ subtitle }}</p>
-    <p class="description text">{{ describtion }}</p>
+    <p class="description text">{{ description }}</p>
   </b-container>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     return {
       title: '',
       subtitle: '',
-      describtion: '',
+      description: '',
     }
   },
   watch: {
@@ -22,19 +22,19 @@ export default {
       var index = value - 1;
       this.title = this.jsonData[index].attributes.title;
       this.subtitle = this.jsonData[index].attributes.subtitle;
-      this.describtion = this.jsonData[index].attributes.describtion;
+      this.description = this.jsonData[index].attributes.description;
     },
     jsonData() {
       var index = this.lecturePage - 1;
       this.title = this.jsonData[index].attributes.title;
       this.subtitle = this.jsonData[index].attributes.subtitle;
-      this.describtion = this.jsonData[index].attributes.describtion;
+      this.description = this.jsonData[index].attributes.description;
     }
   },
   mounted() {
     this.title = this.jsonData[0].attributes.title;
     this.subtitle = this.jsonData[0].attributes.subtitle;
-    this.describtion = this.jsonData[0].attributes.describtion;
+    this.description = this.jsonData[0].attributes.description;
   }
 }
 </script>
@@ -42,6 +42,7 @@ export default {
 <style scoped>
 * {
   height: auto;
+  margin: 0;
   margin: 0 auto;
   padding: 0.33rem;
   text-align: left;
