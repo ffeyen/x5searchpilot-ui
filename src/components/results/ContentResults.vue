@@ -1,9 +1,9 @@
 <template>
   <b-container class="mh-100">
+    <h5 class="text"><b>{{ type.toUpperCase() }}</b>provided by {{ provider }}</h5>
     <h3 class="text">{{ title }}</h3>
-    <b-row>
-      <b-col><p class="cut-text max-lines-10 text">{{ description }}</p></b-col>
-    </b-row>
+    <p v-if="description !== null" class="cut-text max-lines-10 text">{{ description }}</p>
+    <p v-if="description === null" class="cut-text max-lines-10 text"><i>Keine Beschreibung vorhanden</i></p>
     <p class="cut-text max-lines-1 text link"><a :href="url" target="_blank">{{ url }}</a></p>
   </b-container>
 </template>
@@ -18,17 +18,21 @@ export default {
       title: this.jsonData[0].attributes.results[0].title,
       description: this.jsonData[0].attributes.results[0].description,
       tags: this.jsonData[0].attributes.results[0].tags,
-      url: this.jsonData[0].attributes.results[0].url
+      url: this.jsonData[0].attributes.results[0].url,
+      type: this.jsonData[0].attributes.results[0].type,
+      provider: this.jsonData[0].attributes.results[0].provider
     }
   },
   methods: {
     updateContentResultsView() {
-      var indexLecturePage = this.lecturePage - 1;
-      var indexResultsPage = this.resultsPage - 1;
-      this.title = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].title;;
-      this.description = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].description;
-      this.tags = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].tags;
-      this.url = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].url;
+      var indexLecturePage = this.lecturePage - 1
+      var indexResultsPage = this.resultsPage - 1
+      this.title = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].title
+      this.description = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].description
+      this.tags = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].tags
+      this.url = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].url
+      this.type = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].type
+      this.provider = this.jsonData[indexLecturePage].attributes.results[indexResultsPage].provider
     }
   },
   watch: {
@@ -51,12 +55,12 @@ export default {
   margin: 0;
   padding: 0.33rem;
   text-align: left;
-  line-height: 1.5rem;
 }
 
-h3 {
-  padding-top: 2rem;
-  margin-bottom: 1rem;
+h5 {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 a {
@@ -67,37 +71,30 @@ a {
   text-overflow: ellipsis;
 }
 
-.thumbnail {
-  padding-left: 1.5rem;
-  margin-top: -0.2rem;
-}
-.col-thumbnail {
-  max-width: 160px;
-}
-
 .cut-text {
-   overflow: auto;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-box-orient: vertical;
+  overflow: auto;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .max-lines-1 {
-   -webkit-line-clamp: 1;
+  -webkit-line-clamp: 1;
 }
 
 .max-lines-10 {
-   -webkit-line-clamp: 10;
+  -webkit-line-clamp: 10;
 }
 
 .link {
-    padding-bottom: 3rem;
+  padding-bottom: 3rem;
 }
 
 .text {
-    margin-top: -0.5rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
-    line-height: 1.5rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  line-height: 1.5rem;
 }
 </style>

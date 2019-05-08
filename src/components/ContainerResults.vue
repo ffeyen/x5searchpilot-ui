@@ -80,6 +80,7 @@ export default {
   margin: 0px auto;
   padding: 0px !important;
   text-overflow: ellipsis;
+  overflow: auto;
   background: rgb(183, 243, 229);
 }
 </style>
