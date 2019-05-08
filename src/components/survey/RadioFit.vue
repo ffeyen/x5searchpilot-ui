@@ -20,11 +20,11 @@
       return {
         value: null,
         options: [
-          { text: 'sehr gut', value: 5 },
-          { text: 'gut', value: 4 },
-          { text: 'okay', value: 3 },
-          { text: 'schlecht', value: 2 },
-          { text: 'sehr schlecht', value: 1 }
+          { text: 'gar nicht', value: 0 }, 
+          { text: 'sehr schlecht', value: 1 },  
+          { text: 'kaum', value: 2 }, 
+          { text: 'gut', value: 3 },     
+          { text: 'sehr gut', value: 4 }
         ]
       }
     },

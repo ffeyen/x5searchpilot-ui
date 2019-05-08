@@ -20,11 +20,10 @@
       return {
         value: null,
         options: [
-          { text: 'sehr sicher', value: 5 },
-          { text: 'sicher', value: 4 },
-          { text: '50:50', value: 3 },
-          { text: 'unsicher', value: 2 },
-          { text: 'sehr unsicher', value: 1 }
+          { text: 'sehr unsicher', value: 0 },
+          { text: 'unsicher', value: 1 },
+          { text: 'sicher', value: 2 },
+          { text: 'sehr sicher', value: 3 }       
         ]
       }
     },
@@ -35,7 +34,6 @@
     },
     watch: {
       value: function () {
-        //console.log("RadioSure: emits event / value: " + this.value);
         this.$emit('changeRadioBtnSure', this.value);
       },
       surveyRadioSure() {
