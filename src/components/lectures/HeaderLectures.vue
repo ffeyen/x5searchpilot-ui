@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <h2>Vorlesung</h2>
-        <p>zufällige Vorlesung</p>
+        <p>ID: {{ lecturePage -1 }}</p>
       </b-col>
       <b-col><button 
         @click="changeLecturePage()" 
@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'HeaderLectures',
-  props: ['lecturePageMax', 'jsonData'],
+  props: ['lecturePageMax', 'jsonData', 'completedLectures'],
   data () {
     return {
       lecturePage: 1
@@ -33,8 +33,16 @@ export default {
       let rndPage
       do {
         rndPage = Math.floor(Math.random() * (this.lecturePageMax)) + 1
-      } while(currentPage === rndPage)
+      } while(rndPage === currentPage || this.completedLectures[rndPage - 1])
       return rndPage
+    },
+    findNextLecturePage() {
+      this.changeLecturePage()
+    }
+  },
+  watch: {
+    jsonData() {
+      this.changeLecturePage()
     }
   }
 }

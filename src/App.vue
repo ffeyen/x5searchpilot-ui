@@ -2,7 +2,9 @@
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
       <b-col><ContainerLectures 
+        ref="containerLectures"
         :jsonData="jsonData" 
+        :completedLectures="completedLectures"
         @updateLecturePageToApp="changeLecturePage($event)"
       /></b-col>
       <b-col><ContainerResults 
@@ -11,6 +13,7 @@
         :resultsPage="resultsPage"
         :uuid="uuid"
         @updateResultsPageToApp="changeResultsPage($event)"
+        @findNextLecturePage="findNextLecturePage($event)"
       /></b-col>
     </b-row>
   </b-container>
@@ -39,7 +42,8 @@ export default {
       resultsPage: 1,
       keyUpdateProps: 1,
       localStorageKeyUuid: 'x5pilot-uuid',
-      uuid: uuid.v1()
+      uuid: uuid.v1(),
+      completedLectures: []
     } 
   },
   methods: {
@@ -60,11 +64,33 @@ export default {
       ApiService.getLectures()
       .then(response => {
         this.jsonData = JSON.parse(JSON.stringify(response.data))
+        this.checkForCompletedLectures ()
       })
       .catch(error => {
         console.log("Error: Could not get data from API (App.vue:getDataFromApi():getLectures())")
         this.errors.push(error)
       })
+    },
+    checkForCompletedLectures() {
+      for (let lectureId = 0; lectureId < this.jsonData.length; lectureId++) {
+        let notAllResultCompleted = false
+        for (let resultId = 0; resultId < this.jsonData[lectureId].attributes.results.length; resultId++) {
+          let keyName = "x5pilot" + "-l" + Number(lectureId) + "-r" + Number(resultId)
+          if (!notAllResultCompleted) {
+            if (localStorage.getItem(keyName) === null) {
+              notAllResultCompleted = true
+            } 
+          } 
+        }
+        if (notAllResultCompleted) {
+          this.completedLectures[lectureId] = false
+        } else {
+          this.completedLectures[lectureId] = true
+        }
+      }
+    },
+    findNextLecturePage() {
+      this.$refs.containerLectures.findNextLecturePage()
     }
   },
   created() {

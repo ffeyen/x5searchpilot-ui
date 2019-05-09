@@ -59,13 +59,14 @@ export default {
         if (localStorage.getItem(keyName) === null) {
           this.resultsPageHeader = resultId + 1
           this.$toasted.show("Springe zu Suchergebnis " + this.resultsPageHeader, this.toastSubmit)
-          this.$emit('updateResultsPage', this.resultsPageHeader);
+          this.$emit('updateResultsPage', this.resultsPageHeader)
           count++
           return
         } 
       }
       if (count < 1) {
-        this.$toasted.show("Es sind bereits alle Suchergebnisse dieser Vorlesung bewertet. Bitte zur nächsten Vorlesung wechseln.", this.toastSubmit)
+        this.$toasted.show("Es sind alle Suchergebnisse dieser Vorlesung bewertet. Springe zur nächsten zufälligen Vorlesung.", this.toastSubmit)
+        this.$emit('findNextLecturePage')
       } 
     }
   },
