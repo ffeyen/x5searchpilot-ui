@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <h2>Vorlesung</h2>
-        <p>zufällige Vorlesung</p>
+        <p>ID: {{ lecturePage -1 }}</p>
       </b-col>
       <b-col><button 
         @click="changeLecturePage()" 
@@ -33,7 +33,7 @@ export default {
       let rndPage
       do {
         rndPage = Math.floor(Math.random() * (this.lecturePageMax)) + 1
-      } while(currentPage === rndPage)
+      } while(rndPage === currentPage || this.completedLectures[rndPage - 1])
       return rndPage
     }
   }
