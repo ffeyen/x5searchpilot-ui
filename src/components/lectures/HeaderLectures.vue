@@ -55,6 +55,7 @@ export default {
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
   background: rgb(238, 238, 238);
+  overflow: hidden;
 }
 
 </style>
