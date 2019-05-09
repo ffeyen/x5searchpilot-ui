@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'HeaderLectures',
-  props: ['lecturePageMax', 'jsonData'],
+  props: ['lecturePageMax', 'jsonData', 'completedLectures'],
   data () {
     return {
       lecturePage: 1

@@ -3,6 +3,7 @@
     <b-row class="max-height" no-gutters>
       <b-col><ContainerLectures 
         :jsonData="jsonData" 
+        :completedLectures="completedLectures"
         @updateLecturePageToApp="changeLecturePage($event)"
       /></b-col>
       <b-col><ContainerResults 
