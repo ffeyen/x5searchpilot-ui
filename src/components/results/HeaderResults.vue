@@ -93,5 +93,6 @@ export default {
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
   background: rgb(162, 223, 209);
+  overflow: hidden;
 }
 </style>
