@@ -1,7 +1,7 @@
 <template>
   <b-container class="w-100">
     <b-col align-v="start">
-      <b-row>
+      <b-row class="mx-auto">
         <HeaderResults
           :jsonData="jsonData" 
           :resultsPageMax="resultsPageMax"
@@ -11,7 +11,7 @@
           @findNextLecturePage="findNextLecturePage($event)"
         />
       </b-row>
-      <b-row>
+      <b-row class="mx-auto">
         <ContentResults 
           :jsonData="jsonData" 
           :lecturePage="lecturePage"
@@ -19,7 +19,7 @@
           @urlIsClicked="urlIsClicked($event)"
         />
       </b-row>
-      <b-row class="w-100">
+      <b-row class="w-100 mx-auto">
         <ContainerSurvey 
           :jsonData="jsonData" 
           :lecturePage="lecturePage"

@@ -1,7 +1,7 @@
 <template>
   <b-container class="h-100 w-100">
     <b-col align-v="start">
-      <b-row>
+      <b-row class="mx-auto">
         <HeaderLectures 
           ref="headerLectures"
           :jsonData="jsonData" 
@@ -11,7 +11,7 @@
           @findNextLecturePage="findNextLecturePage($event)"
         />
       </b-row>
-      <b-row>
+      <b-row class="mx-auto">
         <ContentLectures 
           :jsonData="jsonData" 
           :lecturePage="lecturePage"
