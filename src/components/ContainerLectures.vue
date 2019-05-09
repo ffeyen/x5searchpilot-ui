@@ -3,10 +3,12 @@
     <b-col align-v="start">
       <b-row>
         <HeaderLectures 
+          ref="headerLectures"
           :jsonData="jsonData" 
           :lecturePageMax="lecturePageMax" 
           :completedLectures="completedLectures"
           @updateLecturePage="changeLecturePage($event)"
+          @findNextLecturePage="findNextLecturePage($event)"
         />
       </b-row>
       <b-row>
@@ -41,6 +43,9 @@ export default {
       this.lecturePage = value;
       this.lecturePageMax = this.jsonData.length;
       this.$emit('updateLecturePageToApp', this.lecturePage)
+    },
+    findNextLecturePage() {
+      this.$refs.headerLectures.findNextLecturePage()
     }
   },
   mounted() {

@@ -35,6 +35,9 @@ export default {
         rndPage = Math.floor(Math.random() * (this.lecturePageMax)) + 1
       } while(rndPage === currentPage || this.completedLectures[rndPage - 1])
       return rndPage
+    },
+    findNextLecturePage() {
+      this.changeLecturePage()
     }
   },
   watch: {

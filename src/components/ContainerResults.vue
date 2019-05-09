@@ -8,6 +8,7 @@
           :lecturePage="lecturePage"
           :resultsPage="resultsPage"
           @updateResultsPage="changeResultsPage($event)"
+          @findNextLecturePage="findNextLecturePage($event)"
         />
       </b-row>
       <b-row>
@@ -61,6 +62,9 @@ export default {
     },
     urlIsClicked() {
       this.urlClickCount++;
+    },
+    findNextLecturePage() {
+      this.$emit('findNextLecturePage')
     }
   },
   watch: {

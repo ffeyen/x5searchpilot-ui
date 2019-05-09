@@ -2,6 +2,7 @@
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
       <b-col><ContainerLectures 
+        ref="containerLectures"
         :jsonData="jsonData" 
         :completedLectures="completedLectures"
         @updateLecturePageToApp="changeLecturePage($event)"
@@ -12,6 +13,7 @@
         :resultsPage="resultsPage"
         :uuid="uuid"
         @updateResultsPageToApp="changeResultsPage($event)"
+        @findNextLecturePage="findNextLecturePage($event)"
       /></b-col>
     </b-row>
   </b-container>
@@ -86,6 +88,9 @@ export default {
           this.completedLectures[lectureId] = true
         }
       }
+    },
+    findNextLecturePage() {
+      this.$refs.containerLectures.findNextLecturePage()
     }
   },
   created() {
