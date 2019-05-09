@@ -1,5 +1,5 @@
 <template>
-  <b-container class="w-100">
+  <b-container class="w-100 h-100">
     <b-col align-v="start">
       <b-row class="mx-0">
         <HeaderResults
