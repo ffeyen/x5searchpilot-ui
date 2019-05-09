@@ -36,6 +36,11 @@ export default {
       } while(rndPage === currentPage || this.completedLectures[rndPage - 1])
       return rndPage
     }
+  },
+  watch: {
+    jsonData() {
+      this.changeLecturePage()
+    }
   }
 }
 </script>
