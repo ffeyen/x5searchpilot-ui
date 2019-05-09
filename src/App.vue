@@ -1,13 +1,13 @@
 <template>
   <b-container id="app" class="mw-100 wrapper">
     <b-row class="max-height" no-gutters>
-      <b-col><ContainerLectures 
+      <b-col class="mx-0"><ContainerLectures 
         ref="containerLectures"
         :jsonData="jsonData" 
         :completedLectures="completedLectures"
         @updateLecturePageToApp="changeLecturePage($event)"
       /></b-col>
-      <b-col><ContainerResults 
+      <b-col class="mx-0"><ContainerResults 
         :jsonData="jsonData" 
         :lecturePage="lecturePage"
         :resultsPage="resultsPage"
