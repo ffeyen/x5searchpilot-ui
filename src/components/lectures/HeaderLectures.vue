@@ -51,11 +51,14 @@ export default {
 <style scoped>
 * {
   margin: auto;
-  height: auto;
+  min-height: 40px;
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
   background: rgb(238, 238, 238);
   overflow: hidden;
 }
 
+p {
+  font-size: 1.25rem;
+}
 </style>

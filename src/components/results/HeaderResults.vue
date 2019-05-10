@@ -10,9 +10,7 @@
       </b-col>
       <b-col>
         <h2>Suchergebnis</h2>
-        <p>
-          {{ resultsPage }} von {{ resultsPageMax }}
-        </p>
+        <p><b>{{ resultsPage }} von {{ resultsPageMax }}</b></p>
       </b-col>
       <b-col><button 
         type="button" 
@@ -89,10 +87,14 @@ export default {
 <style scoped>
 * {
   margin: auto;
-  height: auto;
+  min-height: 40px;
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
   background: rgb(162, 223, 209);
   overflow: hidden;
+}
+
+p {
+  font-size: 1.25rem;
 }
 </style>
