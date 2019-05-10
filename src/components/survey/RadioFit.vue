@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text">Wie gut passt das gezeigte Suchergebnis zur Vorlesung?</p>
+    <p class="text">Das gezeigte Suchergebnis passt zur Vorlesung/zum Kurs.</p>
     <b-form-radio-group 
       class="text" 
       v-model="value" 
@@ -20,11 +20,10 @@
       return {
         value: null,
         options: [
-          { text: 'gar nicht', value: 0 }, 
-          { text: 'sehr schlecht', value: 1 },  
-          { text: 'kaum', value: 2 }, 
-          { text: 'gut', value: 3 },     
-          { text: 'sehr gut', value: 4 }
+          { text: 'trifft nicht zu', value: 1 }, 
+          { text: 'trifft eher nicht zu', value: 2 },
+          { text: 'trifft eher zu', value: 3 }, 
+          { text: 'trifft zu', value: 4 }
         ]
       }
     },

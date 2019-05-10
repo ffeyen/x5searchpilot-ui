@@ -3,7 +3,7 @@
     <b-form-textarea
       id="textComment"
       v-model="value"
-      placeholder="Anmerkung/Kommentar..."
+      placeholder="Anmerkung/Kommentar... (wenn möglich, bitte in englisch)"
       rows="3"
       max-rows="3"
       :disabled="submitted"
