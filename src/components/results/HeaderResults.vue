@@ -6,7 +6,7 @@
         :disabled="resultsPageHeader === 1" 
         @click="changeResultsPage(-1.0)" 
         class="btn btn-outline-dark"
-        >zurück</button>
+        >&#8810;</button>
       </b-col>
       <b-col>
         <h2>Suchergebnis</h2>
@@ -19,12 +19,12 @@
         :disabled="resultsPageHeader === resultsPageMax" 
         @click="changeResultsPage(1.0)" 
         class="btn btn-outline-dark"
-        >nächstes</button>
+        >&#8811;</button>
         <button 
         type="button" 
         @click="findNextResultsPage()" 
         class="btn btn-outline-dark"
-        >nächstes unbeantwortetes</button>
+        >unbeantwortet</button>
       </b-col>
     </b-row>
   </div>
