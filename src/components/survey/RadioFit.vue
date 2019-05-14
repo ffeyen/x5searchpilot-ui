@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text">Das gezeigte Suchergebnis passt zur Vorlesung/zum Kurs.</p>
+    <p class="text">Das gezeigte Suchergebnis passt inhaltlich zur Vorlesung/zum Kurs.</p>
     <b-form-radio-group 
       class="text" 
       v-model="value" 

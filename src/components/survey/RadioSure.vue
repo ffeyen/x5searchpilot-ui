@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text">Ich bin mir sicher mit meiner Antwort.</p>
+    <p class="text">Wie sicher sind Sie sich in Ihrer Einschätzung?</p>
     <b-form-radio-group 
       class="text" 
       v-model="value" 
@@ -20,10 +20,10 @@
       return {
         value: null,
         options: [
-          { text: 'trifft nicht zu', value: 1 },
-          { text: 'trifft eher nicht zu', value: 2 },
-          { text: 'trifft eher zu', value: 3 },
-          { text: 'trifft zu', value: 4 }       
+          { text: 'sehr unsicher', value: 1 },
+          { text: 'eher unsicher', value: 2 },
+          { text: 'eher sicher', value: 3 },
+          { text: 'sehr sicher', value: 4 }       
         ]
       }
     },
