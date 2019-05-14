@@ -2,14 +2,14 @@
   <div>
     <b-row>
       <b-col>
-        <h2>Vorlesung</h2>
+        <h2>Veranstaltung</h2>
         <p>ID: {{ lecturePage -1 }}</p>
       </b-col>
       <b-col><button 
         @click="changeLecturePage()" 
         type="button" 
         class="btn btn-outline-dark"
-        >zufällige Vorlesung</button>
+        >zufällige Veranstaltung</button>
       </b-col>
     </b-row>
   </div>
