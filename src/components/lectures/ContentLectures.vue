@@ -3,11 +3,11 @@
     <h5 class="description text">Uni Osnabrück | {{ semester}} |<b>{{ faculty }}</b></h5>
     <h3 class="text">{{ title }}</h3>
     <p class="description text">{{ description }}</p>
-    <template v-if="lang_origin !== 'en'">
-      <h5 class="description text">Übersetzung {{ lang_origin }} von zu en</h5>
+    <div v-if="lang_origin !== 'en'" class="translated">
+      <h5 class="description text"><i>>> autom. Übersetzung von {{ lang_origin }} zu en (Service: <a href="https://deepl.com" target="_blank">deepl.com</a>)</i></h5>
       <h3 class="text">{{ title_translated }}</h3>
       <p class="description text">{{ description_translated }}</p>
-    </template>
+    </div>
   </b-container>
 </template>
 
@@ -95,5 +95,10 @@ h5 {
     padding-right: 2rem;
     padding-left: 2rem;
     line-height: 1.5rem;
+}
+
+.translated {
+  background-color: rgb(238, 238, 238);
+  color: rgb(90, 90, 90)
 }
 </style>
