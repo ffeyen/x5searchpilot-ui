@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-row>
+    <b-row class="mx-0">
       <b-col><button 
         type="button" 
         :disabled="resultsPageHeader === 1" 
