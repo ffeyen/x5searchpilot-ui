@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-row>
+    <b-row class="mx-0">
       <b-col>
         <h2>Veranstaltung</h2>
         <p>ID: {{ lecturePage -1 }}</p>
