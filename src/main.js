@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import router from './router'
 import axios from 'axios'
+import VueAxios from 'vue-axios'
 import UUID from 'vue-uuid';
 
 import BootstrapVue from 'bootstrap-vue'
@@ -14,7 +15,7 @@ import ContainerResults from './components/ContainerResults.vue'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
-Vue.use(axios)
+Vue.use(VueAxios, axios)
 Vue.use(UUID)
 Vue.use(Toasted, {
   iconPack : 'material'
