@@ -1,23 +1,29 @@
 <template>
-  <b-container class="mh-100">
-    <h5 class="text"><b>{{ type.toUpperCase() }}</b> | <b>{{ provider }}</b></h5>
-    <h3 class="text">{{ title }}</h3>
-    <p v-if="description !== null" class="cut-text text">{{ description }}</p>
-    <p v-if="description === null" class="cut-text text"><i>Keine Beschreibung vorhanden</i></p>
-    <p class="cut-text text link">
-      <a 
-      :href="url" 
-      target="_blank" 
-      @click="urlIsClicked()"
-      >im neuen Fenster öffnen</a>
-    </p>
-    <p class="cut-text text link">
-      <a 
-      :href="urlToGoogleTranslate" 
-      target="_blank"
-      >übersetzen (Google Translate)</a>
-    </p>
-  </b-container>
+  <transition name="fade" mode="out-in">
+    <div :key="lecturePage">
+      <transition name="fade" mode="out-in">
+        <b-container class="mh-100" :key="resultsPage">
+          <h5 class="text"><b>{{ type.toUpperCase() }}</b> | <b>{{ provider }}</b></h5>
+          <h3 class="text">{{ title }}</h3>
+          <p v-if="description !== null" class="cut-text text">{{ description }}</p>
+          <p v-if="description === null" class="cut-text text"><i>Keine Beschreibung vorhanden</i></p>
+          <p class="cut-text text link">
+            <a 
+            :href="url" 
+            target="_blank" 
+            @click="urlIsClicked()"
+            >im neuen Fenster öffnen</a>
+          </p>
+          <p class="cut-text text link">
+            <a 
+            :href="urlToGoogleTranslate" 
+            target="_blank"
+            >übersetzen (Google Translate)</a>
+          </p>
+        </b-container>
+      </transition>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -120,4 +126,12 @@ a {
   padding-left: 2rem;
   line-height: 1.5rem;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.15s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+} 
 </style>
