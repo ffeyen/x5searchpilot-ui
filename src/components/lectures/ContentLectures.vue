@@ -1,10 +1,10 @@
 <template>
   <transition name="fade" mode="out-in">
     <b-container :key="lecturePage">
-      <h5 :key="lecturePage" class="description text">Uni Osnabrück | {{ semester}} |<b>{{ faculty }}</b></h5>
-      <h3 :key="lecturePage" class="text">{{ title }}</h3>
-      <p :key="lecturePage" class="description text">{{ description }}</p>
-      <div :key="lecturePage" v-if="lang_origin !== 'en'" class="translated">
+      <h5 class="description text">Uni Osnabrück | {{ semester}} |<b>{{ faculty }}</b></h5>
+      <h3 class="text">{{ title }}</h3>
+      <p class="description text">{{ description }}</p>
+      <div v-if="lang_origin !== 'en'" class="translated">
         <h5 class="description text"><i>>> autom. Übersetzung von {{ lang_origin }} zu en (Service: <a href="https://deepl.com" target="_blank">deepl.com</a>)</i></h5>
         <h3 class="text">{{ title_translated }}</h3>
         <p class="description text">{{ description_translated }}</p>
