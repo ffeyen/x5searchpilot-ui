@@ -26,7 +26,7 @@
         <b-col>
           <b-row>
             <b-button
-              @click.prevent="submit" 
+              @click.prevent="submitDuplicate" 
               :disabled="submitted"
               class="btn btn-outline-dark" 
               size="lg">Duplikat
@@ -63,8 +63,8 @@ export default {
   },
   data () {
     return {
-      surveyRadioFit: '',
-      surveyRadioSure: '',
+      surveyRadioFit: 0,
+      surveyRadioSure: 0,
       surveyTextComment: '',
       submitted: false,
       duplicate: false,
@@ -74,6 +74,7 @@ export default {
       toastSubmitMsg: "Absenden erfolgreich",
       toastSubmitMsgFalse: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
       toastSubmitMsgBasReq: "Speichern nicht möglich. Bitte Admin kontaktieren.",
+      toastSubmitMsgDuplicate: "Duplikatmeldung erfolgreich abgesendet",
       toastSubmit: { 
         theme: "toasted-primary", 
         position: "bottom-right", 
@@ -89,6 +90,10 @@ export default {
       } else {
         this.sendDataToApi();
       }
+    },
+    submitDuplicate() {
+      this.duplicate = true;
+      this.sendDataToApi();
     },
     sendDataToApi() {
       let submitBundle = this.bundleSurvey();
@@ -137,10 +142,11 @@ export default {
       }
     },
     resetForms() {
-      this.surveyRadioFit = '';
-      this.surveyRadioSure = '';
+      this.surveyRadioFit = 0;
+      this.surveyRadioSure = 0;
       this.surveyTextComment = '';
       this.submitted = false;
+      this.duplicate = false;
       this.urlClickCount = 0;
     },
     saveToLocalStorage(bundle) {
