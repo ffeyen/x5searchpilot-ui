@@ -16,7 +16,7 @@
           />
         </b-row>
       <b-row>
-        <b-col cols="7" class="textfield">
+        <b-col cols="7" rows="5" class="textfield">
           <TextfieldComment 
           :submitted="submitted"
           :surveyTextComment="surveyTextComment"
@@ -24,12 +24,22 @@
           />
         </b-col>
         <b-col>
-          <b-button 
-            @click.prevent="submit" 
-            :disabled="submitted"
-            class="btn btn-outline-dark" 
-            size="lg">Absenden
-          </b-button>
+          <b-row>
+            <b-button
+              @click.prevent="submitDuplicate" 
+              :disabled="submitted"
+              class="btn btn-outline-dark" 
+              size="lg">Duplikat
+            </b-button>
+          </b-row>
+          <b-row>
+            <b-button 
+              @click.prevent="submit" 
+              :disabled="submitted"
+              class="btn btn-outline-dark btn-absenden" 
+              size="lg">Absenden
+            </b-button>
+          </b-row>
         </b-col>
       </b-row>
     </b-col>
@@ -53,16 +63,18 @@ export default {
   },
   data () {
     return {
-      surveyRadioFit: '',
-      surveyRadioSure: '',
+      surveyRadioFit: 0,
+      surveyRadioSure: 0,
       surveyTextComment: '',
       submitted: false,
+      duplicate: false,
       resultsPageSubmit: this.resultsPage,
       localStorageKeyPrefix: 'x5pilot',
       localStorageKey: '',
       toastSubmitMsg: "Absenden erfolgreich",
       toastSubmitMsgFalse: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
-      toastSubmitMsgBasReq: "Speichern nicht m?glich. Bitte Admin kontaktieren.",
+      toastSubmitMsgBasReq: "Speichern nicht möglich. Bitte Admin kontaktieren.",
+      toastSubmitMsgDuplicate: "Duplikatmeldung erfolgreich abgesendet",
       toastSubmit: { 
         theme: "toasted-primary", 
         position: "bottom-right", 
@@ -76,20 +88,27 @@ export default {
       if (!this.surveyRadioFit || !this.surveyRadioSure) {
         this.$toasted.show(this.toastSubmitMsgFalse, this.toastSubmit);
       } else {
-        let submitBundle = this.bundleSurvey();
+        this.sendDataToApi();
+      }
+    },
+    submitDuplicate() {
+      this.duplicate = true;
+      this.sendDataToApi();
+    },
+    sendDataToApi() {
+      let submitBundle = this.bundleSurvey();
 
-        ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
-          .then(response => {
-            this.saveToLocalStorage(submitBundle);
-            this.submitted = true;
-            this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
-            this.nextPage();
-          })
-          .catch(error => {
-            this.$toasted.show(this.toastSubmitMsgBasReq, this.toastSubmit);
-            this.errors.push(error)
-        });
-      };
+      ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
+        .then(response => {
+          this.saveToLocalStorage(submitBundle);
+          this.submitted = true;
+          this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
+          this.nextPage();
+        })
+        .catch(error => {
+          this.$toasted.show(this.toastSubmitMsgBasReq, this.toastSubmit);
+          this.errors.push(error)
+      });
     },
     bundleSurvey() {
       let submitBundle = {
@@ -101,9 +120,10 @@ export default {
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
         textComment: this.surveyTextComment,
-        urlClickCount: this.urlClickCount
+        urlClickCount: this.urlClickCount,
+        isDuplicate: this.duplicate
       };
-
+      
       return submitBundle;
     },    
     updateRadioFit: function(value) {
@@ -123,10 +143,11 @@ export default {
       }
     },
     resetForms() {
-      this.surveyRadioFit = '';
-      this.surveyRadioSure = '';
+      this.surveyRadioFit = 0;
+      this.surveyRadioSure = 0;
       this.surveyTextComment = '';
       this.submitted = false;
+      this.duplicate = false;
       this.urlClickCount = 0;
     },
     saveToLocalStorage(bundle) {
@@ -189,8 +210,14 @@ export default {
 }
 
 .btn {
-  height: 5rem;
+  background: none;
+  height: 50%;
   width: 80%;
   margin: 0.33rem;
+  margin-left: 2rem;
+}
+
+.btn-absenden {
+  background: rgb(134, 182, 171);
 }
 </style>
