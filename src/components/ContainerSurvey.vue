@@ -16,7 +16,7 @@
           />
         </b-row>
       <b-row>
-        <b-col cols="7" class="textfield">
+        <b-col cols="7" rows="5" class="textfield">
           <TextfieldComment 
           :submitted="submitted"
           :surveyTextComment="surveyTextComment"
@@ -24,12 +24,22 @@
           />
         </b-col>
         <b-col>
-          <b-button 
-            @click.prevent="submit" 
-            :disabled="submitted"
-            class="btn btn-outline-dark" 
-            size="lg">Absenden
-          </b-button>
+          <b-row>
+            <b-button
+              @click.prevent="submitDuplicate" 
+              :disabled="submitted"
+              class="btn btn-outline-dark" 
+              size="lg">Duplikat
+            </b-button>
+          </b-row>
+          <b-row>
+            <b-button 
+              @click.prevent="submit" 
+              :disabled="submitted"
+              class="btn btn-outline-dark btn-absenden" 
+              size="lg">Absenden
+            </b-button>
+          </b-row>
         </b-col>
       </b-row>
     </b-col>
@@ -57,12 +67,13 @@ export default {
       surveyRadioSure: '',
       surveyTextComment: '',
       submitted: false,
+      duplicate: false,
       resultsPageSubmit: this.resultsPage,
       localStorageKeyPrefix: 'x5pilot',
       localStorageKey: '',
       toastSubmitMsg: "Absenden erfolgreich",
       toastSubmitMsgFalse: "Zum Absenden ist das Beantworten beider Fragen notwendig.",
-      toastSubmitMsgBasReq: "Speichern nicht m?glich. Bitte Admin kontaktieren.",
+      toastSubmitMsgBasReq: "Speichern nicht möglich. Bitte Admin kontaktieren.",
       toastSubmit: { 
         theme: "toasted-primary", 
         position: "bottom-right", 
@@ -189,8 +200,14 @@ export default {
 }
 
 .btn {
-  height: 5rem;
+  background: none;
+  height: 50%;
   width: 80%;
   margin: 0.33rem;
+  margin-left: 2rem;
+}
+
+.btn-absenden {
+  background: rgb(134, 182, 171);
 }
 </style>
