@@ -26,7 +26,7 @@
         <b-col>
           <b-row>
             <b-button
-              @click.prevent="submitDuplicate" 
+              @click.prevent="submit" 
               :disabled="submitted"
               class="btn btn-outline-dark" 
               size="lg">Duplikat
@@ -87,20 +87,23 @@ export default {
       if (!this.surveyRadioFit || !this.surveyRadioSure) {
         this.$toasted.show(this.toastSubmitMsgFalse, this.toastSubmit);
       } else {
-        let submitBundle = this.bundleSurvey();
+        this.sendDataToApi();
+      }
+    },
+    sendDataToApi() {
+      let submitBundle = this.bundleSurvey();
 
-        ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
-          .then(response => {
-            this.saveToLocalStorage(submitBundle);
-            this.submitted = true;
-            this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
-            this.nextPage();
-          })
-          .catch(error => {
-            this.$toasted.show(this.toastSubmitMsgBasReq, this.toastSubmit);
-            this.errors.push(error)
-        });
-      };
+      ApiService.postBundle(submitBundle.lectureId, submitBundle.resultId, submitBundle)
+        .then(response => {
+          this.saveToLocalStorage(submitBundle);
+          this.submitted = true;
+          this.$toasted.show(this.toastSubmitMsg, this.toastSubmit);
+          this.nextPage();
+        })
+        .catch(error => {
+          this.$toasted.show(this.toastSubmitMsgBasReq, this.toastSubmit);
+          this.errors.push(error)
+      });
     },
     bundleSurvey() {
       let submitBundle = {
