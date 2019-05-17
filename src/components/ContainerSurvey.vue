@@ -120,9 +120,10 @@ export default {
         radioFit: this.surveyRadioFit,
         radioSure: this.surveyRadioSure,
         textComment: this.surveyTextComment,
-        urlClickCount: this.urlClickCount
+        urlClickCount: this.urlClickCount,
+        isDuplicate: this.duplicate
       };
-
+      
       return submitBundle;
     },    
     updateRadioFit: function(value) {
