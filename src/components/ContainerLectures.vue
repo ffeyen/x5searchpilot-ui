@@ -34,7 +34,7 @@ export default {
   },
   data () {
     return {
-      lecturePage: 1,
+      lecturePage: 0,
       lecturePageMax: ''
     }
   }, 

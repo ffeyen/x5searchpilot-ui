@@ -38,7 +38,7 @@ export default {
   data() { 
     return {
       jsonData: jsonEmpty,
-      lecturePage: 1,
+      lecturePage: 0,
       resultsPage: 1,
       keyUpdateProps: 1,
       localStorageKeyUuid: 'x5pilot-uuid',
