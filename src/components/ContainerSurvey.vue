@@ -113,7 +113,7 @@ export default {
     bundleSurvey() {
       let submitBundle = {
         uuid: this.uuid,
-        lectureId: Number(this.jsonData[this.lecturePage - 1].id),
+        lectureId: Number(this.jsonData[this.lecturePage - 1].id) -1,
         resultId: Number(this.resultsPage - 1),
         localStorageKey: this.localStorageKey,
         submitDate: new Date(),
