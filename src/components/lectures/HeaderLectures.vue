@@ -3,7 +3,7 @@
     <b-row class="mx-0">
       <b-col>
         <h2>Veranstaltung</h2>
-        <p>ID: {{ lecturePage -1 }}</p>
+        <p>ID: {{ lecturePage -1 }} (von {{ lecturePageMax -1 }})</p>
       </b-col>
       <b-col><button 
         @click="changeLecturePage()" 
