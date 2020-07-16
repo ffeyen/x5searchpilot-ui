@@ -9,6 +9,8 @@
         <h3 class="text">{{ title_translated }}</h3>
         <p class="description text">{{ description_translated }}</p>
       </div>
+      <p class="text">Zur Ressource:</p>
+      <p class="text"><a :href="url" target="_blank">{{ url }}</a></p>
     </b-container>
   </transition>
 </template>
@@ -25,7 +27,8 @@ export default {
       description_translated: '',
       semester: '',
       lang_origin: '',
-      faculty: ''
+      faculty: '',
+      url: ''
     }
   },
   watch: {
@@ -38,6 +41,7 @@ export default {
       this.semester = this.jsonData[index].attributes.semester
       this.lang_origin = this.jsonData[index].attributes.language
       this.faculty = this.jsonData[index].attributes.faculty
+      this.url= this.jsonData[index].attributes.url
     },
     jsonData() {
       var index = this.lecturePage - 1;
@@ -48,6 +52,7 @@ export default {
       this.semester = this.jsonData[index].attributes.semester
       this.lang_origin = this.jsonData[index].attributes.language
       this.faculty = this.jsonData[index].attributes.faculty
+      this.url= this.jsonData[index].attributes.url
     }
   },
   mounted() {
@@ -58,6 +63,7 @@ export default {
       this.semester = this.jsonData[0].attributes.semester
       this.lang_origin = this.jsonData[0].attributes.language
       this.faculty = this.jsonData[0].attributes.faculty
+      this.url= this.jsonData[0].attributes.url
   }
 }
 </script>
