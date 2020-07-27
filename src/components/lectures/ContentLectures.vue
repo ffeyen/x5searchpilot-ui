@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" mode="out-in">
     <b-container :key="lecturePage">
-      <h5 class="description text">Uni Osnabrück | {{ semester}} |<b>{{ faculty }}</b></h5>
+      <h5 class="text"> </h5>
       <h3 class="text">{{ title }}</h3>
       <p class="description text">{{ description }}</p>
       <div v-if="lang_origin !== 'en'" class="translated">

@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       resultsPageVar: 1,
-      resultsPageMax: '',
+      resultsPageMax: 0,
       urlClickCount: 0
     }
   }, 
@@ -79,10 +79,10 @@ export default {
       this.resultsPageVar = 1;
       this.urlClickCount = 0;
       this.$emit('updateResultsPageToApp', this.resultsPageVar);
+    },
+    resultsPageMax() {
+      this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length;
     }
-  },
-  created() {
-    this.resultsPageMax = this.jsonData[this.lecturePage - 1].attributes.results.length
   }
 }
 </script>
