@@ -15,7 +15,7 @@
     "@babel/runtime": "^7.10.5",
     "@vue/babel-preset-jsx": "^1.1.2",
     "@vue/cli": "^3.12.1",
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "css-loader": "^3.6.0",
